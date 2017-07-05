@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'deploy',
     'monitor',
     'wikis',
+    'account',
 ]
 
 MIDDLEWARE = [
