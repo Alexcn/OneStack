@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>OneStack管理后台</title>
+
+        <!-- Bootstrap -->
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <!-- Font Awesome -->
+        <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+        {% block css %}
+        {% endblock %}
+        <!-- Custom Theme Style -->
+        <link href="/static/css/custom.min.css" rel="stylesheet">
+    </head>
+
+    <body class="nav-md">
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>OneStack</span></a>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <!-- menu profile quick info -->
+                        <div class="profile">
+                            <div class="profile_pic">
+                                <img src="/static/img/avatar2.jpg" alt="..." class="img-circle profile_img">
+                            </div>
+                            <div class="profile_info">
+                                <span>Welcome,</span>
+                                <h2>{% if request.user.first_name %}{{ request.user.first_name  }}{% else %}{{ request.user  }}{% endif %}</h2>
+                            </div>
+                        </div>
+                        <!-- /menu profile quick info -->
+
+                        <br />
+
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section">
+                                <ul class="nav side-menu">
+                                    <li><a><i class="fa fa-tachometer"></i> 控制面板 <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="/">帮助</a></li>
+                                    </ul>
+                                    </li>
+                                    {% if perms.deploy.view_deploy %}
+                                    <li><a><i class="fa fa-cubes"></i> 部署管理 <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        {% if request.user.is_superuser %}
+                                        <li><a href="{% url 'key_list' %}">主机管理</a></li>
+                                        <li><a href="{% url 'group_list' %}">分组管理</a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu" style="display: none"><a href="{% url 'group_add' %}">新增主机分组</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        {% endif %}
+                                        <li><a href="{% url 'remote_exec' %}">远程命令</a></li>
+                                        <li><a href="{% url 'module_deploy' %}">模块部署</a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu" style="display: none"><a href="{% url 'module_list' %}">模块列表</a>
+                                                </li>
+                                                <li class="sub_menu" style="display: none"><a href="{% url 'module_add' %}">新增模块</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="{% url 'advanced_manage' %}">高级管理</a></li>
+                                        <li><a href="{% url 'project_list' %}">项目管理</a></li>
+                                    </ul>
+                                    </li>
+                                    {% endif %}
+                                    {% if perms.deploy.view_filemanage %}
+                                    <li><a><i class="fa fa-folder-open"></i> 文件管理 <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{% url 'file_download' %}">文件下载</a></li>
+                                        <li><a href="{% url 'file_manage' %}">文件上传</a></li>
+                                        <li><a href="{% url 'file_rollback' %}">文件回滚</a></li>
+                                    </ul>
+                                    </li>
+                                    {% endif %}
+                                    {% if perms.asset.view_asset %}
+                                    <li><a><i class="fa fa-desktop"></i> 资产管理 <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{% url 'server_info' %}">服务器资产</a></li>
+                                        <li><a href="{% url 'idc_asset_list' %}">数据中心</a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu" style="display: none"><a href="{% url 'idc_add' %}">新增IDC</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    </li>
+                                    {% endif %}
+                                    {% if perms.userperm.view_message %}
+                                    <li><a><i class="fa fa-bars"></i> 任务管理 <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{% url 'task_list' %}">任务列表</a></li>
+                                        <li><a href="{% url 'task_check' %}">任务查询</a></li>
+                                        <li><a href="{% url 'task_running' %}">存活任务</a></li>
+                                    </ul>
+                                    </li>
+                                    {% endif %}
+                                    {% if request.user.is_superuser %}
+                                    <li><a><i class="fa fa-cogs"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{% url 'user_list' %}">查看用户</a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu" style="display: none"><a href="{% url 'user_add' %}">新增用户</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="{% url 'user_group_list' %}">查看用户组</a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu" style="display: none"><a href="{% url 'user_group_add' %}">新增用户组</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="{% url 'command_list' %}">远程命令</a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu" style="display: none"><a href="{% url 'command_add' %}">新增远程命令</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="{% url 'dir_list' %}">远程目录</a>
+                                            <ul class="nav child_menu">
+                                                <li class="sub_menu" style="display: none"><a href="{% url 'dir_add' %}">新增远程目录</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-arrows"></i> 日志审计 <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{% url 'log_audit' %}">操作日志</a></li>
+                                    </ul>
+                                    </li>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!-- /sidebar menu -->
+
+                            <!-- /menu footer buttons -->
+                            <div class="sidebar-footer hidden-small">
+                                <a href="{% url 'logout' %}" data-toggle="tooltip" data-placement="top" title="Logout">
+                                    <span class="fa fa-sign-out" aria-hidden="true"></span>
+                                </a>
+                            </div>
+                            <!-- /menu footer buttons -->
+                        </div>
+                    </div>
+
+                    <!-- top navigation -->
+                    <div class="top_nav">
+                        <div class="nav_menu">
+                            <nav class="" role="navigation">
+                                <div class="nav toggle">
+                                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                                </div>
+
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <img src="/static/img/avatar2.jpg" alt="">
+                                        {% if request.user.first_name %}
+                                            {{ request.user.first_name  }}
+                                        {% else %}
+                                            {{ request.user  }}
+                                        {% endif %}
+                                        <span class=" fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                        <li><a href="/admin/"> Profile</a></li>
+                                        <li><a href="/">Help</a></li>
+                                        <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                    </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- /top navigation -->
+
+                    <!-- page content -->
+                    {% block content %}
+                    {% endblock %}
+                    <!-- /page content -->
+
+                    <!-- footer content -->
+                    <footer>
+                        <div class="pull-right">
+                            OneStack运维平台 - Powered by <a href="https://www.geektop.net" target="_blank">GeekTop</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </footer>
+                    <!-- /footer content -->
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <script src="/static/js/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="/static/js/bootstrap.min.js"></script>
+        {% block js %}
+        {% endblock %}
+        <!-- Custom Theme Scripts -->
+        <script src="/static/js/custom.min.js"></script>
+
+
+    </body>
+</html>
