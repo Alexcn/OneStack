@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     # url(r'^admin/', admin.site.urls),
     url(r'', include('account.urls', namespace='account')),
-    url(r'account/', include('account.urls', namespace='account')),
+    # url(r'account/', include('account.urls', namespace='account')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

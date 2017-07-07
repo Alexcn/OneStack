@@ -28,4 +28,3 @@ class LoginView(View):
 class LogoutView(View):
     def get(self, request):
         pass
-
