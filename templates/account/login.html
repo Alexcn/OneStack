@@ -26,13 +26,14 @@
     <body>
 
         <div class="page-container">
-            <h1><a class="navbar-brand" href="../account/login"><img src="../../static/images/logo.png"></a><span style="color: MintCream">OneOps</span></h1>
-             {% if errors %}
+            <h1><a class="navbar-brand" href="../account/login"><img src="../../static/images/logo.png"></a><span
+                    style="color: MintCream">OneStack</span></h1>
+            {% if errors %}
                  {% for error in errors %}
                      <h2 ><span style="color: red">您的{{ error }}</span></h2>
                  {% endfor %}
              {% endif %}
-            <form action="../account/loginnew.html" method="post">
+            <form action="../account/login.html" method="post">
             <fieldset>
                 <input type="text" name="username" class="username" placeholder="您的账号" autofocus>
                 <input type="password" name="password" class="password" placeholder="您的密码" >
