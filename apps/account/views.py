@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_protect
 # Create your views here.
 
 
-class IndexView(View):
+class DashBoardView(View):
     @method_decorator(login_required)
     def get(self, request):
         pass

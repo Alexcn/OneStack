@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="right_col" role="main">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <h3>模块部署之模块管理：</h3>
+                <p>新增模块支持.zip .tar.gz .tar.bz2压缩格式的模块包<br />
+                模块名称：任意取名<br />
+                调用模块：格式为 '目录名称.' + 'sls文件名' [eg: nrpe_ins.nrpe]</p>
+                <p>&nbsp;</p>
+                <p><strong>新增模块范例：</strong></p>
+                部署nrpe模块<br />
+                <b>模块包 nrpe_ins.zip</b><br />
+                nrpe_ins目录树<br />
+                - icinga.tar.bz2 ## nrpe插件包<br />
+                - nrpe.sls
+
+                <p>编写 nrpe.sls<br />
+                nrpe.sls:<br />
+                /tmp/icinga.tar.bz2: ## 上传nrpe插件包到远程机器临时目录<br />
+                file:<br />
+                - managed<br />
+                - source: SALTSRC/icinga.tar.bz2 ## SALTSRC为固定格式<br />
+                - backup: minion<br />
+                cmd.run:<br />
+                - name: useradd icinga -s /sbin/nologin;tar jxvf /tmp/icinga.tar.bz2 -C /usr/local/ &amp;&amp; chown -R icinga:icinga /usr/local/icinga &amp;&amp; echo &quot;/usr/local/icinga/bin/nrpe -c /usr/local/icinga/etc/nrpe.cfg -d&quot; &gt;&gt; /etc/rc.local;/usr/local/icinga/bin/nrpe -c /usr/local/icinga/etc/nrpe.cfg -d &amp;&amp; rm -rf /tmp/icinga.tar.bz2 ## 具体执行的命令</p>
+                <p>模块名称：在这里取名为 Nrpe_Install<br />
+                调用模块：nrpe_ins.nrpe</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
