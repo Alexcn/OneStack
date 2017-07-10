@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jumpserver',
     'audits',
-    'api',
     'assets',
     'deploy',
     'monitor',
