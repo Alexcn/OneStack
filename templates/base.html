@@ -37,7 +37,7 @@
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
-                        
+                            <h2>{% if request.user.first_name %}{{ request.user.first_name  }}{% else %}{{ request.user  }}{% endif %}</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -53,10 +53,8 @@
                                     <li><a href="/">帮助</a></li>
                                 </ul>
                             </li>
-                            <!--{% if perms.deploy.view_deploy %}-->
                             <li><a><i class="fa fa-cubes"></i> 部署管理 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <!--{% if request.user.is_superuser %}-->
                                     <li><a href="#">主机管理</a></li>
                                     <li><a href="#">分组管理</a>
                                         <ul class="nav child_menu">
@@ -64,7 +62,6 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <!--{% endif %}-->
                                     <li><a href="#">远程命令</a></li>
                                     <li><a href="#}">模块部署</a>
                                         <ul class="nav child_menu">
@@ -79,8 +76,7 @@
                                     <li><a href="#">项目管理</a></li>
                                 </ul>
                             </li>
-                            <!--{% endif %}-->
-                            <!--{% if perms.deploy.view_filemanage %}-->
+
                             <li><a><i class="fa fa-folder-open"></i> 文件管理 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="#">文件下载</a></li>
@@ -88,8 +84,7 @@
                                     <li><a href="#">文件回滚</a></li>
                                 </ul>
                             </li>
-                            <!--{% endif %}-->
-                            <!--{% if perms.asset.view_asset %}-->
+
                             <li><a><i class="fa fa-desktop"></i> 资产管理 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="#">服务器资产</a></li>
@@ -101,8 +96,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <!--{% endif %}-->
-                            <!--{% if perms.userperm.view_message %}-->
+
                             <li><a><i class="fa fa-bars"></i> 任务管理 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="#">任务列表</a></li>
@@ -110,8 +104,7 @@
                                     <li><a href="#">存活任务</a></li>
                                 </ul>
                             </li>
-                            <!--{% endif %}-->
-                            <!--{% if request.user.is_superuser %}-->
+
                             <li><a><i class="fa fa-cogs"></i> 用户管理 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="#">查看用户</a>
@@ -147,7 +140,6 @@
                                     <li><a href="#">操作日志</a></li>
                                 </ul>
                             </li>
-                            <!--{% endif %}-->
                         </ul>
                     </div>
                 </div>
@@ -176,11 +168,11 @@
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
                                 <img src="/static/img/avatar2.jpg" alt="">
-                                <!--{% if request.user.first_name %}-->
-                                <!--{{ request.user.first_name }}-->
-                                <!--{% else %}-->
-                                <!--{{ request.user }}-->
-                                <!--{% endif %}-->
+                                {% if request.user.first_name %}
+                                {{ request.user.first_name }}
+                                {% else %}
+                                {{ request.user }}
+                                {% endif %}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -197,8 +189,8 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <!--{% block content %}-->
-        <!--{% endblock %}-->
+        {% block content %}
+        {% endblock %}
         <!-- /page content -->
 
         <!-- footer content -->
