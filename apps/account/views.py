@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.decorators import method_decorator
@@ -16,6 +16,7 @@ class DashBoardView(View):
     @method_decorator(login_required(login_url='account/login'))
     def get(self, request):
         return render(request, 'account/dashboard.html')
+        # return render_to_response('account/dashboard.html')
 
 
 class LoginView(View):

@@ -34,6 +34,7 @@
                  {% endfor %}
              {% endif %}
             <form action="/account/login/" method="post">
+                {% csrf_token %}
             <fieldset>
                 <input type="text" name="username" class="username" placeholder="您的账号" autofocus>
                 <input type="password" name="password" class="password" placeholder="您的密码" >
@@ -44,6 +45,7 @@
                     {% endfor %}
                 {% endif %}
             </fieldset>
+                {{ form }}
             </form>
             <!---
             <div class="connect">
