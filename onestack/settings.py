@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'monitor',
     'wikis',
     'account',
+    'common',
 ]
 
 MIDDLEWARE = [
