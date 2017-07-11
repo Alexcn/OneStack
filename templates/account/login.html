@@ -33,7 +33,7 @@
                      <h2 ><span style="color: red">您的{{ error }}</span></h2>
                  {% endfor %}
              {% endif %}
-            <form action="/account/login/" method="post">
+            <form action="{% url 'account:login' %}" method="post">
                 {% csrf_token %}
             <fieldset>
                 <input type="text" name="username" class="username" placeholder="您的账号" autofocus>
