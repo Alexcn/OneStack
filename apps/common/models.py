@@ -9,3 +9,14 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class Server(BaseModel):
+    class Meta:
+        abstract = True
+
+
+class SoftWare(BaseModel):
+    class Meta:
+        abstract = True
+
