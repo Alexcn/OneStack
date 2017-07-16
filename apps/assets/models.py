@@ -42,5 +42,3 @@ class SoftwareAsset(ITAsset):
 
 class ServerAsset(HardwareAsset):
     pass
-
-
