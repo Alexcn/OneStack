@@ -40,5 +40,5 @@ class SoftwareAsset(ITAsset):
     pass
 
 
-class ServerAsset(HardwareAsset):
-    pass
+# class ServerAsset(HardwareAsset):
+#     pass
