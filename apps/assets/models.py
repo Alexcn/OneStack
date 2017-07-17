@@ -1,6 +1,7 @@
 from django.db import models
 from apps.common.models import BaseModel
 from django.contrib.postgres.fields import JSONField
+# from model_utils import Choices
 
 
 # Create your models here.
@@ -33,7 +34,21 @@ class ITAsset(BaseModel):
 
 
 class HardwareAsset(ITAsset):
-    pass
+
+    assets_type_choices = {
+        'server': '服务器',
+        'switch': '交换机',
+        'route': '路由器',
+        'printer': '打印机',
+        'scanner': '扫描仪',
+        'firewall': '防火墙',
+        'storage': '存储设备',
+        'wifi': '无线设备',
+    }
+
+    @property
+    def hardware_type(self):
+        return self.assets_type_choices
 
 
 class SoftwareAsset(ITAsset):
