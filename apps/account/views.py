@@ -2,7 +2,6 @@ from django.shortcuts import render, render_to_response
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate
@@ -46,4 +45,3 @@ class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         return HttpResponsePermanentRedirect(reverse('account:login'))
-
