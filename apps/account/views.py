@@ -1,19 +1,20 @@
 from django.shortcuts import render, render_to_response
 from django.views.generic import View
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
+from apps.common.utils import LoginRequiredMixin
 
 # Create your views here.
 
 
-class DashBoardView(View):
-    @method_decorator(login_required(login_url='account/login'))
+class DashBoardView(LoginRequiredMixin, View):
     def get(self, request):
         return render(request, 'account/dashboard.html')
         # return render_to_response('account/dashboard.html')
@@ -41,6 +42,8 @@ class LoginView(View):
         return render(request, 'account/login.html')
 
 
-class LogoutView(View):
+class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
-        pass
+        logout(request)
+        return HttpResponsePermanentRedirect(reverse('account:login'))
+
