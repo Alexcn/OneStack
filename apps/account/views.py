@@ -41,7 +41,7 @@ class LoginView(View):
         return render(request, 'account/login.html')
 
 
-class LogoutView(LoginRequiredMixin, View):
+class LogoutView(View):
     def get(self, request):
         logout(request)
         return HttpResponsePermanentRedirect(reverse('account:login'))

@@ -30,7 +30,6 @@ class APIAddress(BaseModel):
     method = models.CharField(max_length=10, default='GET')    # 需要添加状态字段，使用枚举类型
     access_frequency = models.IntegerField(default=30)         # 每隔30s访问一次
     params = JSONField(null=True, blank=True)
-    enterprise = models.ForeignKey('Enterprise')       # 需要做外键关联
     description = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -44,7 +43,6 @@ class APIMonitorInfoCollection(BaseTimeModel):
     status = models.CharField(max_length=10)
     return_data = models.CharField(max_length=5000, blank=True, null=True)
     response_time = models.IntegerField(blank=True)             # 单位是毫秒
-    enterprise = models.ForeignKey('Enterprise')      # 需要做外键关联
 
     class Meta:
         db_table = 'api_monitor_info_collections'
@@ -53,7 +51,6 @@ class APIMonitorInfoCollection(BaseTimeModel):
 class VisitTrackWebsite(BaseTimeModel):
     domain_name = models.CharField(max_length=512)
     track_code = models.TextField(blank=True)
-    enterprise = models.ForeignKey('Enterprise')      # 需要做外键关联
     description = models.TextField(blank=True)
 
     class Meta:
@@ -72,7 +69,6 @@ class VisitTrackWebsiteInfoCollection(BaseTimeModel):
 
 class MonitorWebsite(BaseModel):
     access_frequency = models.IntegerField(blank=True, default=30)  # 每隔30s访问一次
-    enterprise = models.ForeignKey('Enterprise')
     description = models.TextField(blank=True, null=True)
 
     class Meta:
