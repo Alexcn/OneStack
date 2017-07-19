@@ -2,10 +2,8 @@ from django.shortcuts import render, render_to_response
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.utils.decorators import method_decorator
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
-from django.contrib.auth import authenticate
-from django.contrib.auth import login as auth_login
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from apps.common.utils import LoginRequiredMixin
@@ -29,7 +27,7 @@ class LoginView(View):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
-                auth_login(request, user)
+                login(request, user)
                 return HttpResponseRedirect('/')
             else:
                 msg.append('Disabled account!')
@@ -44,4 +42,4 @@ class LoginView(View):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return HttpResponsePermanentRedirect(reverse('account:login'))
+        return HttpResponseRedirect('/')

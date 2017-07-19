@@ -17,11 +17,14 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.views.static import serve
 from django.conf.urls.static import static
+from apps.account.views import LogoutView, LoginView
 
 urlpatterns = [
     url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     url(r'', include('account.urls', namespace='account')),
     url(r'assets/', include('assets.urls', namespace='assets')),
+    url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^logout/$', LogoutView.as_view(), name='logout'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
