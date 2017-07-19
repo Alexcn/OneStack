@@ -1,9 +1,8 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
 from django.views.generic import View
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
+from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
-from django.core.urlresolvers import reverse
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from apps.common.utils import LoginRequiredMixin
