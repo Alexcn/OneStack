@@ -1,3 +1,11 @@
 from django.shortcuts import render
+from django.views.generic import View
+from apps.common.utils import LoginRequiredMixin
 
-# Create your views here.
+
+class WikiListView(LoginRequiredMixin, View):
+    pass
+
+
+class WikiAddView(LoginRequiredMixin, View):
+    pass
