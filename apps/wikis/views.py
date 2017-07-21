@@ -9,3 +9,7 @@ class WikiListView(LoginRequiredMixin, View):
 
 class WikiAddView(LoginRequiredMixin, View):
     pass
+
+
+class WikiEditView(LoginRequiredMixin, View):
+    pass
