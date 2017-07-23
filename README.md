@@ -28,3 +28,4 @@ pip install -r requirements/dev.txt
 
 3. 代码风格建议
 
+- 使用类视图代替函数视图
