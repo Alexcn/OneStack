@@ -6,6 +6,7 @@ from .models import Wiki
 
 class WikiListView(LoginRequiredMixin, ListView):
     model = Wiki
+    template_name = 'wikis/wiki_list.html'
 
 
 class WikiAddView(LoginRequiredMixin, View):
