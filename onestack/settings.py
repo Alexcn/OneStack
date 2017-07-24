@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'account',
     'common',
     'debug_toolbar',
+    'task',
 ]
 
 MIDDLEWARE = [
