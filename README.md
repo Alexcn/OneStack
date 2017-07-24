@@ -13,7 +13,7 @@
 
 ### 贡献你的力量
 
-> 欢迎`fork`和`pull request`
+> 欢 **fork** 和 **pull request**
 
 1. fork 本项目
 
