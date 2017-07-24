@@ -13,7 +13,9 @@
 
 ### 贡献你的力量
 
-> 欢 **fork** 和 **pull request**
+> 欢迎 **fork** 和 **pull request**，遇到问题，请到Issue提问。
+
+#### 如何贡献你的代码？
 
 1. fork 本项目
 
@@ -27,7 +29,11 @@ pyvenv venv
 source venv/bin/activate
 pip install -r requirements/dev.txt
 ```
+3. 修改或新增代码，修改前建议阅读代码风格建议
 
-3. 代码风格建议
+4. 发起pull request。
+
+
+### 代码风格建议
 
 - 使用类视图代替函数视图
