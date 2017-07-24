@@ -13,3 +13,4 @@ class Wiki(BaseModel):
 
     class Meta:
         db_table = 'wikis'
+        ordering = ['-created_at']

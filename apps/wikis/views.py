@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import View, ListView, CreateView
 from apps.common.utils import LoginRequiredMixin
+from .models import Wiki
 
 
-class WikiListView(LoginRequiredMixin, View):
-    pass
+class WikiListView(LoginRequiredMixin, ListView):
+    model = Wiki
 
 
 class WikiAddView(LoginRequiredMixin, View):
@@ -12,4 +13,8 @@ class WikiAddView(LoginRequiredMixin, View):
 
 
 class WikiEditView(LoginRequiredMixin, View):
+    pass
+
+
+class WikiDetailView(LoginRequiredMixin, View):
     pass
