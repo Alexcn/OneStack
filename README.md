@@ -13,7 +13,7 @@
 
 ### 贡献你的力量
 
-> 欢迎 **fork** 和 **pull request**，遇到问题，请到Issue提问。
+> 欢迎 **fork** 和 **pull request**，遇到问题，请到 **Issues** 提问。
 
 #### 如何贡献你的代码？
 
