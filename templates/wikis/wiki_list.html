@@ -1,82 +1,118 @@
 {% extends "base.html" %}
 
+{% block css %}
+    <link rel="stylesheet" href="/static/css/dataTables.bootstrap.min.css">
+{% endblock %}
 {% block content %}
-<div class="right_col" role="main">
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                Wiki列表
-                <small>包含故障总结、帮助文档、常用资料等</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-                <li><a href="#">Wiki管理</a></li>
-                <li class="active">Wiki列表</li>
-            </ol>
-        </section>
+    <div class="right_col" role="main">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Wiki列表
+                    <small>包含故障总结、帮助文档、常用资料等</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                    <li><a href="#">Wiki管理</a></li>
+                    <li class="active">Wiki列表</li>
+                </ol>
+            </section>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <table id="articleList" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Wiki标题</th>
-                                    <th>创建时间</th>
-                                    <th>更新时间</th>
-                                    <th>阅读数</th>
-                                    <!--<th>评论数</th>-->
-                                    <!--<th>状态</th>-->
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for wiki in wiki_list %}
-                                <tr id="Article{{ article.id }}">
-                                    <td>{{ wiki.title }}</td>
-                                    <td>{{ wiki.created_time }}</td>
-                                    <td>{{ wiki.updated_time }}</td>
-                                    <td>{{ wiki.read }}</td>
-                                    <!--<td>{{ wiki.get_comment_num }}</td>-->
-                                    <!--<td>-->
-                                        <!--{% if article.status == '0' %}-->
-                                        <!--<button type="button" class="btn btn-primary" style="font-size: 12px">发布-->
-                                        <!--</button>-->
-                                        <!--{% elif article.status == '1' %}-->
-                                        <!--<button type="button" class="btn btn-info" style="font-size: 12px">存稿</button>-->
-                                        <!--{% endif %}-->
-                                    <!--</td>-->
-                                    <td>
-                                        <button onclick="EditWiki({{ wiki.id }})" type="button"
-                                                class="btn btn-success" style="font-size: 12px">编辑
-                                        </button>
-                                        <button onclick="DeleteWiki({{ wiki.id }})" type="button"
-                                                class="btn btn-danger" style="font-size: 12px">删除
-                                        </button>
-                                        <a href="{% url 'wiki' wiki.url %}">
-                                            <button type="button" class="btn btn-default" style="font-size: 12px">访问
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="articleList" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Wiki标题</th>
+                                        <th>创建时间</th>
+                                        <th>更新时间</th>
+                                        <th>阅读数</th>
+                                        <!--<th>评论数</th>-->
+                                        <!--<th>状态</th>-->
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for wiki in wiki_list %}
+                                    <tr id="Article{{ article.id }}">
+                                        <td>{{ wiki.title }}</td>
+                                        <td>{{ wiki.created_time }}</td>
+                                        <td>{{ wiki.updated_time }}</td>
+                                        <td>{{ wiki.read }}</td>
+                                        <!--<td>{{ wiki.get_comment_num }}</td>-->
+                                        <!--<td>-->
+                                            <!--{% if article.status == '0' %}-->
+                                            <!--<button type="button" class="btn btn-primary" style="font-size: 12px">发布-->
+                                            <!--</button>-->
+                                            <!--{% elif article.status == '1' %}-->
+                                            <!--<button type="button" class="btn btn-info" style="font-size: 12px">存稿</button>-->
+                                            <!--{% endif %}-->
+                                        <!--</td>-->
+                                        <td>
+                                            <button onclick="EditWiki({{ wiki.id }})" type="button"
+                                                    class="btn btn-success" style="font-size: 12px">编辑
                                             </button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
+                                            <button onclick="DeleteWiki({{ wiki.id }})" type="button"
+                                                    class="btn btn-danger" style="font-size: 12px">删除
+                                            </button>
+                                            <a href="{% url 'wiki' wiki.url %}">
+                                                <button type="button" class="btn btn-default" style="font-size: 12px">查看
+                                                </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box-body -->
+                        <!-- /.box -->
                     </div>
-                    <!-- /.box -->
+                    <!-- /.col -->
                 </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
-        </section>
-        <!-- /.content -->
+                <!-- /.row -->
+            </section>
+            <!-- /.content -->
+        </div>
     </div>
-</div>
 {% end block %}
+
+{% block js %}
+<!-- DataTables -->
+    <script src="/static/js/jquery.dataTables.min.js"></script>
+    <script src="/static/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $("#articleList").DataTable();
+        });
+        function DeleteArticle(ID) {
+            $.ajax({
+                type: "DELETE",
+                url: "{% url 'admin:article-add' %}",
+                headers: {
+                    "X-CSRFToken": '{{ csrf_token }}'
+                },
+                data: JSON.stringify({
+                    id: ID
+                }),
+                success: function (data) {
+                    data = JSON.parse(data);
+                    $('#Article' + data.aid).remove();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+        function EditArticle(ID) {
+            location.href = "{% url 'wiki:wiki-edit' %}" + '?id=' + ID
+        }
+    </script>
+{% endblock %}
