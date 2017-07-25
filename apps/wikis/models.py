@@ -9,7 +9,7 @@ class Wiki(BaseModel):
     # author_id = models.IntegerField(default=1)
     content = models.TextField(max_length=5000)
     # STATUS = Choices('draft', 'published')
-    status = StatusField()
+    # status = StatusField()
 
     class Meta:
         db_table = 'wikis'
