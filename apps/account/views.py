@@ -41,4 +41,4 @@ class LoginView(View):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/login')
