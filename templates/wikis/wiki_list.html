@@ -52,10 +52,10 @@
                                         <!--{% endif %}-->
                                     <!--</td>-->
                                     <td>
-                                        <button onclick="EditArticle({{ wiki.id }})" type="button"
+                                        <button onclick="EditWiki({{ wiki.id }})" type="button"
                                                 class="btn btn-success" style="font-size: 12px">编辑
                                         </button>
-                                        <button onclick="DeleteArticle({{ wiki.id }})" type="button"
+                                        <button onclick="DeleteWiki({{ wiki.id }})" type="button"
                                                 class="btn btn-danger" style="font-size: 12px">删除
                                         </button>
                                         <a href="{% url 'wiki' wiki.url %}">
