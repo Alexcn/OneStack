@@ -7,6 +7,9 @@ from model_utils.fields import StatusField
 class Category(BaseModel):
     name = models.CharField(max_length=128)
 
+    class Meta:
+        db_table = 'categories'
+
 
 class Wiki(BaseModel):
     title = models.CharField(max_length=254, db_index=True)
