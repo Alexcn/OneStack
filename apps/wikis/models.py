@@ -4,28 +4,16 @@ from model_utils.fields import StatusField
 # from model_utils import Choices
 
 
-class Categories(BaseModel):
-    name = models.CharField(max_length=32, unique=True)
-
-    def categories_article_count(self):
-        return self.wiki_set.all().count()
-
-
-class Tag(BaseModel):
-    name = models.CharField(max_length=32, unique=True)
-
-    def tag_article_count(self):
-        return self.wiki_set.all().count()
+class Category(BaseModel):
+    name = models.CharField(max_length=128)
 
 
 class Wiki(BaseModel):
     title = models.CharField(max_length=254, db_index=True)
     # author_id = models.IntegerField(default=1)
     content = models.TextField(max_length=5000)
-    # STATUS = Choices('draft', 'published')
-    # status = StatusField()
-    # categories = models.ManyToManyField(Categories)
-    # tag = models.ManyToManyField(Tag)
+    # wiki_type = models.CharField(max_length=256)
+    category_id = models.ManyToManyField(Category)
 
     class Meta:
         db_table = 'wikis'
