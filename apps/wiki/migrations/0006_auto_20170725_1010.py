@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wikis', '0005_categories_tag'),
+        ('wiki', '0005_categories_tag'),
     ]
 
     operations = [
@@ -33,6 +33,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='wiki',
             name='category_id',
-            field=models.ManyToManyField(to='wikis.Category'),
+            field=models.ManyToManyField(to='wiki.Category'),
         ),
     ]

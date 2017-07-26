@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class WikisConfig(AppConfig):
-    name = 'wikis'
+    name = 'wiki'

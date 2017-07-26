@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     url(r'', include('account.urls', namespace='account')),
     url(r'assets/', include('assets.urls', namespace='assets')),
+    url(r'wiki/', include('wiki.urls', namespace='wiki')),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

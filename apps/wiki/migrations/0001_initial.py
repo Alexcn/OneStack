@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('status', model_utils.fields.StatusField(choices=[('draft', 'draft'), ('published', 'published')], default='draft', max_length=100, no_check_for_status=True)),
             ],
             options={
-                'db_table': 'wikis',
+                'db_table': 'wiki',
             },
         ),
     ]

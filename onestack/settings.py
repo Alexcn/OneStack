@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'assets',
     'deploy',
     'monitor',
-    'wikis',
+    'wiki',
     'account',
     'common',
     'debug_toolbar',

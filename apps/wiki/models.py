@@ -19,5 +19,5 @@ class Wiki(BaseModel):
     category_id = models.ManyToManyField(Category)
 
     class Meta:
-        db_table = 'wikis'
+        db_table = 'wiki'
         ordering = ['-created_at']
