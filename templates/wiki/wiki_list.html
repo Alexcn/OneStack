@@ -95,7 +95,7 @@
         function DeleteArticle(ID) {
             $.ajax({
                 type: "DELETE",
-                url: "{% url 'admin:article-add' %}",
+                url: "{% url 'wiki:wiki_add' %}",
                 headers: {
                     "X-CSRFToken": '{{ csrf_token }}'
                 },
@@ -112,7 +112,7 @@
             });
         }
         function EditArticle(ID) {
-            location.href = "{% url 'wiki:wiki-edit' %}" + '?id=' + ID
+            location.href = "{% url 'wiki:wiki_edit' %}" + '?id=' + ID
         }
     </script>
 {% endblock %}
