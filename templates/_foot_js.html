@@ -1,0 +1,105 @@
+<!-- scripts -->
+<script src="/static/js/jquery-2.2.3.min.js"></script>
+<script src="/static/js/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script src="/static/js/bootstrap/bootstrap.min.js"></script>
+<script src="/static/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/static/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="/static/plugins/bootstrap-table/extensions/export/bootstrap-table-export.min.js"></script>
+<script src="/static/plugins/tableExport.jquery.plugin/tableExport.min.js"></script>
+<script src="/static/plugins/bootstrap-dialog/js/bootstrap-dialog.min.js"></script>
+<script src="/static/js/nicescroll/jquery.nicescroll.min.js"></script>
+<script src="/static/js/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="/static/js/fastclick/fastclick.js"></script>
+<script src="/static/plugins/nice-validator/jquery.validator.min.js?local=zh-CN"></script>
+<script src="/static/plugins/pnotify/pnotify.custom.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/js/app.min.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes)
+<script src="dist/js/pages/dashboard.js"></script>-->
+<!-- AdminLTE for demo purposes -->
+<script src="/static/js/demo.js"></script>
+<!--自定义滚动条-->
+<script>
+    $(function () {
+        $("html").niceScroll({
+            styler: "fb", cursorcolor: "#e8403f", cursorwidth: '6', cursorborderradius: '10px',
+            background: '#404040',
+            cursorborder: '',
+            zindex: 99999
+        });
+
+        //设置pnotify全局变量
+        //PNotify.prototype.options.styling = "bootstrap3";
+        //PNotify.prototype.options.styling = "fontawesome";
+        PNotify.prototype.options.delay = 2000;
+
+        // check sidebar status
+        var sidebar = localStorage.getItem('sidebar');
+        if (sidebar == '1') {
+            $('body').addClass('sidebar-collapse');
+        }
+        else {
+            $('body').removeClass('sidebar-collapse');
+        }
+    });
+</script>
+<!-- active menu -->
+<script>
+    var url_array = document.location.pathname.split("/");
+    s1 = url_array[1];
+    s2 = url_array[2];
+    if (s1 == 'dashboard') {
+        $('#index').addClass('active');
+    } else {
+        $('#' + s1).addClass('active');
+        $('#' + s1 + ' .' + s2).addClass('active');
+    }
+</script>
+<script>
+    $('.sidebar-toggle').click(function () {
+        if ($('body').hasClass('sidebar-collapse')) {
+            //Cookies.set('sidebar', '1', {expires: 7});
+            //sessionStorage.setItem('')
+            localStorage.setItem('sidebar', '0');
+        }
+        else {
+            //Cookies.set('sidebar', '0', {expires: 7});
+            localStorage.setItem('sidebar', '1');
+        }
+    })
+
+    /*Cookies.set('sidebar', 'collapse', {expires: 7});
+     //console.log(Cookies.get('user'));
+     var sidebar = Cookies.get('sidebar');
+     if (sidebar == '1') {
+     $('body').addClass('sidebar-collapse');
+     }
+     else {
+     $('body').removeClass('sidebar-collapse');
+     }*/
+
+
+    // logout button
+    $("#logout").click(function () {
+        BootstrapDialog.confirm({
+            title: "警告",
+            size: BootstrapDialog.SIZE_SMALL,
+            type: BootstrapDialog.TYPE_WARNING,
+            message: "确定要退出系统吗？",
+            draggable: true,
+            btnCancelLabel: '点错了',
+            btnCancelClass: 'btn-white',
+            btnOKLabel: '退出',
+            //btnOKClass: 'btn-default',
+            callback: function (result) {
+                if (result) {
+                    top.location.href = '{% url 'logout' %}';
+                }
+            }
+        });
+    });
+</script>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ops server</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    {% include '_head_css_js.html' %}
+    {% block self_head_css_js %}{% endblock %}
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <header class="main-header">
+        {% include '_nav_bar_header2.html' %}
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            {% include '_nav_li_profile.html' %}
+            {% include '_nav.html' %}
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            {% include '_nav_cat_bar.html' %}
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="alert alert-warning" style="margin: 0px auto 20px">
+                你的SSH key已经过期,点击 <a href="/users/profile/pubkey/update/"> 链接 </a>更新
+            </div>
+            {% block content %}{% endblock %}
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            Version <strong>0.1.0</strong> GPL
+        </div>
+        <strong>Copyright </strong> <a href="http://www.wilean.com">wilean.com</a> Team &copy; 2017-2018 . <!--All rights
+        reserved.-->
+    </footer>
+
+    <!-- Control Sidebar -->
+    {% include '_control_sidebar.html' %}
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+</body>
+{% include '_foot_js.html' %}
+{% block self_footer_js %} {% endblock %}
+</html>
