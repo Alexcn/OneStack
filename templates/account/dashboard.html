@@ -1,9 +1,11 @@
-{% extends 'base.html' %}
-{% block css %}
-<link rel="stylesheet" href="/static/css/style.css">
+{% extends 'layout.html' %}
+{% block self_head_css_js %}
+    <!-- 引入 ECharts 文件 -->
+    <script src="/static/js/echarts/echarts.min.js"></script>
+    <script src="/static/js/echarts/macarons.js"></script>
 {% endblock %}
+
 {% block content %}
-<div class="right_col" role="main">
     <div class="row">
         <div class="col-md-4 col-xs-12">
             <div class="small-box c-bg1">
@@ -33,10 +35,179 @@
             </div>
         </div>
     </div>
-</div>
+    <div class="row">
+        <!--
+        <div class="col-md-6">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs pull-right">
+                    <div class="page-header">
+                        <h4>服务器信息</h4>
+                    </div>
+
+                </ul>
+                <div class="tab-content no-padding">
+                    <div class="table-responsive">
+                        <table class="table no-margin">
+                            <tbody>
+                            <tr>
+                                <td>主机名称</td>
+                                <td>{{ server_info.hostname }}</td>
+                            </tr>
+                            <tr>
+                                <td>系统信息</td>
+                                <td>{{ server_info.system_info }}</td>
+                            </tr>
+                            <tr>
+                                <td>CPU架构</td>
+                                <td>{{ server_info.arch }}</td>
+                            </tr>
+                            <tr>
+                                <td>CPU信息</td>
+                                <td>{{ server_info.procesor }}</td>
+                            </tr>
+                            <tr>
+                                <td>Python版本</td>
+                                <td>{{ server_info.py_version }}</td>
+                            </tr>
+                            <tr>
+                                <td>内存大小</td>
+                                <td>{{ server_info.total_mem }} M</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">服务器信息</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-chevron-up"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table no-margin">
+                            <tbody>
+                            <tr>
+                                <td>主机名称</td>
+                                <td>{{ server_info.hostname }}</td>
+                            </tr>
+                            <tr>
+                                <td>系统信息</td>
+                                <td>{{ server_info.system_info }}</td>
+                            </tr>
+                            <tr>
+                                <td>CPU架构</td>
+                                <td>{{ server_info.arch }}</td>
+                            </tr>
+                            <tr>
+                                <td>CPU信息</td>
+                                <td>{{ server_info.procesor }}</td>
+                            </tr>
+                            <tr>
+                                <td>Python版本</td>
+                                <td>{{ server_info.py_version }}</td>
+                            </tr>
+                            <tr>
+                                <td>内存大小</td>
+                                <td>{{ server_info.total_mem }} M</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    <h3 class="box-title">资源使用率</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-chevron-up"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                    <div id="main" style="height:220px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
-{% block js %}
-<!-- 引入 ECharts 文件 -->
-<script src="/static/js/echarts/echarts.min.js"></script>
-<script src="/static/js/echarts/macarons.js"></script>
+
+{% block self_footer_js %}
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'), 'macarons');
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '资源使用率',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {
+                data: ['使用率'],
+                y: 'bottom'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {show: true},
+                    dataView: {show: true},
+                    magicType: {show: true},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '20%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: ['内存使用率', 'CPU使用率']
+            },
+            series: [
+                {
+                    name: '使用率',
+                    type: 'bar',
+                    data: [{{ server_info.ram_used }}, {{ server_info.cpu }}],
+                    barWidth: '20px'
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
 {% endblock %}
