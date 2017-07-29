@@ -7,5 +7,5 @@ from django.contrib.auth.models import AbstractUser, Group, Permission, Permissi
 from django.core.validators import RegexValidator
 
 
-class User(AbstractUser):
-    pass
+# class User(AbstractUser):
+#     pass
