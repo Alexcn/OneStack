@@ -6,6 +6,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission, PermissionsMixin
 from django.core.validators import RegexValidator
 
-#
-# class User(AbstractUser):
-#     pass
+
+class User(AbstractUser):
+    pass
