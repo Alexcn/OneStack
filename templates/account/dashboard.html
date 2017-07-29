@@ -150,6 +150,76 @@
             </div>
         </div>
     </div>
+
+<div class="row">
+        <div class="col-md-6">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">服务器信息</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-chevron-up"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table no-margin">
+                            <tbody>
+                            <tr>
+                                <td>主机名称</td>
+                                <td>{{ server_info.hostname }}</td>
+                            </tr>
+                            <tr>
+                                <td>系统信息</td>
+                                <td>{{ server_info.system_info }}</td>
+                            </tr>
+                            <tr>
+                                <td>CPU架构</td>
+                                <td>{{ server_info.arch }}</td>
+                            </tr>
+                            <tr>
+                                <td>CPU信息</td>
+                                <td>{{ server_info.procesor }}</td>
+                            </tr>
+                            <tr>
+                                <td>Python版本</td>
+                                <td>{{ server_info.py_version }}</td>
+                            </tr>
+                            <tr>
+                                <td>内存大小</td>
+                                <td>{{ server_info.total_mem }} M</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.box-body -->
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-warning">
+                <div class="box-header with-border">
+                    <h3 class="box-title">资源使用率</h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-chevron-up"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                    <div id="main" style="height:220px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block self_footer_js %}
