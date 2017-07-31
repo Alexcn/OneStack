@@ -1,22 +1,18 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView
 from django.utils.decorators import method_decorator
-# from django.contrib.auth.decorators import login_required
 from apps.common.utils import LoginRequiredMixin
+from .models import HardwareAsset
 
 
-class AssetListView(LoginRequiredMixin, ListView):
-    def get(self, request):
-        pass
+class HardwareAssetListView(LoginRequiredMixin, ListView):
+    model = HardwareAsset
+    template_name = 'assets/hardware_asset_list.html'
 
 
-class AssetAddView(LoginRequiredMixin, CreateView):
-    def get(self, request):
-        pass
-
-    def post(self, request):
-        pass
+class HardwareAssetAddView(LoginRequiredMixin, CreateView):
+    pass
 
 
-class AssetUpdateView(LoginRequiredMixin, CreateView):
+class HardwareAssetUpdateView(LoginRequiredMixin, UpdateView):
     pass
