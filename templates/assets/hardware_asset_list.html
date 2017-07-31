@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-{% load mytags %}
+
 
 {% block content %}
 <div class="row">
@@ -31,7 +31,7 @@
             <div class="box-body">
                 <div class="table-responsive">
                     <div id="toolbar">
-                        <a href="{% url 'asset_add' %}" class="btn btn-sm btn-default">
+                        <a href="#" class="btn btn-sm btn-default">
                             <i class="fa fa-plus"></i> 添加
                         </a>
                         <button id="btn_remove" class="btn btn-sm btn-danger">
@@ -115,11 +115,8 @@
                                         onchange="change_info()">
                                     <option value="">资产类型</option>
                                     {% for t in asset_types %}
-                                    {% ifequal t.0|int2str type %}
                                     <option value="{{ t.0 }}" selected> {{ t.1 }}</option>
-                                    {% else %}
-                                    <option value="{{ t.0 }}"> {{ t.1 }}</option>
-                                    {% endifequal %}
+
                                     {% endfor %}
                                 </select>
                             </label>
@@ -127,11 +124,8 @@
                                 <select name="status" class="form-control m-b input-sm" onchange="change_info()">
                                     <option value="">资产状态</option>
                                     {% for s in asset_status %}
-                                    {% ifequal s.0|int2str status %}
                                     <option value="{{ s.0 }}" selected> {{ s.1 }}</option>
-                                    {% else %}
-                                    <option value="{{ s.0 }}"> {{ s.1 }}</option>
-                                    {% endifequal %}
+
                                     {% endfor %}
                                 </select>
                             </label>
@@ -186,7 +180,7 @@
                 }
             },
             method: 'get',
-            url: '{% url 'asset_getlist' %}',
+            url: '#',
             toolbar: '#toolbar',
             idField: 'id',
             sidePagination: "server",
@@ -259,7 +253,7 @@
 
     function hostnameFormatter(value, row, index) {
         return [
-            '<a href="{% url 'asset_detail' %}?id=' + row.id + '">',
+            '<a href="#?id=' + row.id + '">',
             value + '</a>  ',
             '<a href="javascript:terminal(' + row.id + ')" data-toggle="tooltip" title="Web 终端"><span class="blue"><i class="fa fa-laptop"></i></span></a>'
         ].join('');
@@ -268,7 +262,7 @@
     //操作列方法
     function operateFormatter(value, row, index) {
         return [
-            '<a class="btn btn-xs btn-default" href="{% url 'asset_edit' %}?id=' + row.id + '">',
+            '<a class="btn btn-xs btn-default" href="#?id=' + row.id + '">',
             '<i class="fa fa-edit"></i> 编辑</a> ',
             //'<a class="conn btn btn-xs btn-success" href="javascript:void(0)">',
             //'<i class="fa fa-flash"></i> 连接</a> ',
@@ -326,7 +320,7 @@
             //$("#btn_flush i").addClass('fa-spin');
             $("#btn_flush").html('<i class="fa fa-spin fa-refresh"></i> 更新中...');
             $.ajax({
-                url: '{% url 'get_server_info' %}?action=flush',
+                url: '#?action=flush',
                 type: 'POST',
                 data: {},
                 //url返回的值
@@ -365,7 +359,7 @@
                             $.each(selected, function (index, value) {
                                 ids[index] = value.id;
                             });
-                            $.post("{% url 'asset_del' %}", {ids: ids}, function (data) {
+                            $.post("#", {ids: ids}, function (data) {
                                     if (data.code != 0) {
                                         $table.bootstrapTable("refresh");
                                         dialogItself.close();
