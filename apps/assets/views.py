@@ -11,8 +11,10 @@ class HardwareAssetListView(LoginRequiredMixin, ListView):
 
 
 class HardwareAssetAddView(LoginRequiredMixin, CreateView):
-    pass
+    model = HardwareAsset
+    template_name = 'asset/hardware_asset_add.html'
 
 
 class HardwareAssetUpdateView(LoginRequiredMixin, UpdateView):
-    pass
+    model = HardwareAsset
+
