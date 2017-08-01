@@ -35,7 +35,7 @@ class LoginView(View):
         return render(request, 'account/login.html', {'errors': msg})
 
     def get(self, request):
-        if not request.user.is_authenticated():
+        if request.user.is_authenticated():
             return HttpResponseRedirect('/')
         return render(request, 'account/login.html')
 
