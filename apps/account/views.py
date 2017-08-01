@@ -40,7 +40,7 @@ class LoginView(View):
         return render(request, 'account/login.html')
 
 
-class LogoutView(View):
+class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         return HttpResponseRedirect('/login')
