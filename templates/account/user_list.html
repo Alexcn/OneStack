@@ -1,0 +1,276 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">查看用户</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-chevron-up"></i>
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-wrench"></i></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <div id="toolbar">
+                            <a href="{% url 'user_add' %}" class="btn btn-sm btn-default">
+                                <i class="fa fa-plus"></i> 添加用户
+                            </a>
+                            <button id="btn_remove" class="btn btn-sm btn-danger">
+                                <i class="fa fa-trash-o"></i> 批量删除
+                            </button>
+                        </div>
+                        <table id="table">
+                        </table>
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- ./box-body -->
+                <div class="box-footer">
+                    <div class="row">
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- context menu -->
+    <ul id="context-menu" class="dropdown-menu context-menu">
+        <li data-item="edit"><a>Edit</a></li>
+        <li data-item="delete"><a>Delete</a></li>
+        <li data-item="action1"><a>Action Here</a></li>
+        <li data-item="action2"><a>And Action Here</a></li>
+    </ul>
+{% endblock %}
+{% block self_footer_js %}
+    <script src="/static/plugins/bootstrap-table/extensions/contextmenu/bootstrap-table-contextmenu.min.js"></script>
+    <script>
+        var $table = $('#table'),
+            $remove = $('#remove'),
+            selections = [];
+
+        function initTable() {
+            $table.bootstrapTable({
+                //绑定右键菜单
+                contextMenu: '#context-menu',
+                onContextMenuItem: function (row, $el) {
+                    if ($el.data("item") == "edit") {
+                        alert("Edit: " + row.id + ' ' + row.name + ' ' + row.price);
+                    } else if ($el.data("item") == "delete") {
+                        alert("Delete: " + row.id + ' ' + row.name + ' ' + row.price);
+                    } else if ($el.data("item") == "action1") {
+                        alert("Action1: " + row.id + ' ' + row.name + ' ' + row.price);
+                    } else if ($el.data("item") == "action2") {
+                        alert("Action2: " + row.id + ' ' + row.name + ' ' + row.price);
+                    }
+                },
+                method: 'get',
+                url: '{% url 'user_getlist' %}',
+                toolbar: '#toolbar',
+                //指定主键列
+                idField: 'id',
+                sidePagination: "server",
+                //height: getHeight(),
+                //设置为 true 会有隔行变色效果
+                striped: true,
+                search: true,
+                showRefresh: true,
+                showColumns: true,
+                //showToggle: true,
+                //showPaginationSwitch: true,
+                pagination: true,
+                pageSize: 8,
+                pageList: [10, 25, 50, 100],
+                cache: false,
+                clickToSelect: true,
+                columns: [
+                    {
+                        field: 'state',
+                        checkbox: true,
+                        align: 'center'
+                    },
+                    {
+                        field: 'id',
+                        title: 'ID',
+                        align: 'center',
+                        visible: false
+                    },
+                    {
+                        field: 'username',
+                        title: '用户名',
+                        sortable: true,
+                        align: 'center',
+                        formatter: nameFormatter
+                    }
+                    , {
+                        field: 'name',
+                        title: '姓名',
+                        align: 'center'
+                    }
+
+                    , {
+                        field: 'group',
+                        title: '小组',
+                        align: 'center'
+                    }
+                    , {
+                        field: 'role',
+                        title: '角色',
+                        align: 'center'
+                    }
+                    , {
+                        field: 'hostnum',
+                        title: '主机数量',
+                        align: 'center'
+                    }
+                    , {
+                        field: 'email',
+                        title: '邮箱',
+                        align: 'center'
+                    }
+                    , {
+                        field: 'key',
+                        title: '密钥',
+                        align: 'center'
+                    }
+                    , {
+                        field: 'is_active',
+                        title: '状态',
+                        align: 'center',
+                        formatter: activeFormatter
+                    }, {
+                        field: 'operate',
+                        title: '操作',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operateFormatter
+                    }
+
+                ]
+            })
+        }
+
+        function getHeight() {
+            return $(window).height() - $('h1').outerHeight(true);
+        }
+
+        function nameFormatter(value, row, index) {
+            return [
+                '<a href="{% url 'user_profile' %}?uid=' + row.id + '">',
+                value + '</a>',
+            ].join('');
+        }
+
+        //操作列方法
+        function operateFormatter(value, row, index) {
+            return [
+                '<a class="btn btn-xs btn-default" href="{% url 'user_edit' %}?id=' + row.id + '">',
+                '<i class="fa fa-edit"></i> 编辑</a> ',
+                '<a class="remove btn btn-xs btn-danger" href="javascript:void(0)" title="Remove">',
+                '<i class="fa fa-trash-o"></i> 删除',
+                '</a>'
+            ].join('');
+        }
+        //状态列
+        function activeFormatter(value, row, index) {
+            //alert(value);
+            s = '';
+            if (value == true) {
+                s = '是';
+            }
+            else {
+                s = "<span style='color:red;'>否</span>";
+            }
+            return s;
+        }
+
+        window.operateEvents = {
+            'click .remove': function (e, value, row, index) {
+                BootstrapDialog.confirm({
+                    title: "警告",
+                    type: BootstrapDialog.TYPE_WARNING,
+                    message: "确定删除用户 <span class='red'>" + row.name + "</span> 吗？",
+                    draggable: true,
+                    btnCancelLabel: '放弃',
+                    btnCancelClass: 'btn-white',
+                    btnOKLabel: '确认',
+                    callback: function (result) {
+                        if (result) {
+                            var ids = [row.id];
+                            $.post("{% url 'user_del' %}", {ids: ids}, function (data) {
+                                    if (data.code != 0) {
+                                        $table.bootstrapTable("refresh");
+                                        dialogItself.close();
+                                    }
+                                    else BootstrapDialog.alert(data.message);
+
+                                }, "json"
+                            );
+                        }
+                    }
+                });
+            }
+        };
+
+        $(function () {
+            //初始化表格
+            initTable();
+
+            // delete button
+            $("#btn_remove").click(function () {
+                var selected = $table.bootstrapTable('getSelections');
+                if ($(selected).length > 0) {
+                    BootstrapDialog.confirm({
+                        title: "警告",
+                        message: "确定删除选中的" + $(selected).length + "个用户吗？",
+                        type: BootstrapDialog.TYPE_WARNING,
+                        btnCancelLabel: '放弃',
+                        btnCancelClass: 'btn-white',
+                        btnOKLabel: '确认',
+                        //btnOKClass: 'btn-default',
+                        callback: function (result) {
+                            if (result) {
+                                var ids = new Array($(selected).length);
+                                $.each(selected, function (index, value) {
+                                    ids[index] = value.id;
+                                });
+                                $.post("{% url 'user_del' %}", {ids: ids}, function (data) {
+                                        if (data.code != 0) {
+                                            $table.bootstrapTable("refresh");
+                                            dialogItself.close();
+                                        }
+                                        else BootstrapDialog.alert(data.message);
+
+                                    }, "json"
+                                );
+                            }
+                        }
+                    });
+                }
+                else BootstrapDialog.warning("请选择要删除的行");
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'layout.html' %}
+
+{% block self_head_css_js %}
+    <link rel="stylesheet" href="/static/plugins/select2/css/select2.min.css">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-7 pl0">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><b>{{ user_group.name }}</b></h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                    class="fa fa-chevron-up"></i>
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-wrench"></i></button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td width="20%"><b>名称:</b></td>
+                                <td>{{ user_group.name }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>创建者:</b></td>
+                                <td>{{ user_group.created_by }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>创建日期:</b></td>
+                                <td>{{ user_group.created_at|date:"Y-m-d H:i:s" }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>备注:</b></td>
+                                <td>{{ user_group.comment }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5 pl0 pr0">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-info-circle"></i> 用户
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td colspan="2" class="no-borders">
+                                    <select id="select_users" data-placeholder="添加用户" class="select2"
+                                            style="width:100%;"
+                                            multiple tabindex="4">
+                                        {% for user in users_no_selected %}
+                                            <option value="{{ user.id }}"
+                                                    id="opt_{{ user.id }}">{{ user.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="no-borders">
+                                    <button type="button" class="btn btn-default btn-small" id="btn_add_user">添加
+                                    </button>
+                                </td>
+                            </tr>
+                            {% ifnotequal users_selected.count 0 %}
+                                {#                                {% for user in users_selected %}#}
+                                {% for user in user_group.user_set.all %}
+                                    <tr>
+                                        <td><b class="bdg_user" data-uid="{{ user.id }}">{{ user.name }}</b></td>
+                                        <td>
+                                            <button class="btn btn-danger pull-right btn-xs btn_remove_user"
+                                                    type="button">
+                                                <i class="fa fa-minus"></i></button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td><b class="red">当前组没有用户</b></td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                            {% endifnotequal %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block self_footer_js %}
+    <script src="/static/plugins/select2/js/select2.full.min.js"></script>
+    <script>
+
+        $(function () {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}

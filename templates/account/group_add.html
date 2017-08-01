@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="group_form" method="post" action="{% url 'user_group_add' %}" class="form-horizontal">
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">组名<span class="text-red">*</span>：</label>
+        <div class="col-sm-8">
+            {{ group_form.name }}
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        <label class="control-label col-sm-2">用户<span class="text-red">*</span>：</label>
+        <div class="col-sm-3">
+            <select id="users" name="users" size="12" class="form-control m-b" multiple>
+                {% for user in user_all %}
+                    <option value="{{ user.id }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-sm-1">
+            <div class="btn-group" style="margin-top: 50px;">
+                <button type="button" class="btn btn-white" style="margin-bottom: 5px;"
+                        onclick="move('users', 'users_selected')"><i
+                        class="fa fa-chevron-right"></i></button>
+                <button type="button" class="btn btn-white" onclick="move('users_selected', 'users')"><i
+                        class="fa fa-chevron-left"></i></button>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div>
+                <select id="users_selected" name="users_selected" class="form-control m-b" size="12" multiple>
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="form-group">
+        <label class="control-label col-sm-2">备注：</label>
+        <div class="col-sm-8">
+            {{ group_form.comment }}
+        </div>
+    </div>
+
+</form>
+</body>
+<script>
+    $('#group_form').validator({
+        timely: 2,
+        theme: "yellow_right_effect",
+        stopOnError: true,
+        fields: {
+            "name": {
+                rule: "required",
+                tip: "姓名",
+                ok: ""
+            }
+        },
+        valid: function (form) {
+            form.submit();
+        }
+    });
+</script>
+</html>

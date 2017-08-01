@@ -1,0 +1,186 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">查看资产组</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-chevron-up"></i>
+                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-wrench"></i></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <div id="toolbar">
+                            <a href="{% url 'asset_group_add' %}" class="btn btn-sm btn-default">
+                                <i class="fa fa-plus"></i> 添加资产组
+                            </a>
+                            <button id="btn_remove" class="btn btn-sm btn-danger">
+                                <i class="fa fa-trash-o"></i> 批量删除
+                            </button>
+                        </div>
+                        <table id="table">
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block self_footer_js %}
+    <script>
+        var $table = $('#table');
+        function initTable() {
+            $table.bootstrapTable({
+                method: 'get',
+                url: '{% url 'asset_group_getlist' %}',
+                toolbar: '#toolbar',
+                //指定主键列
+                idField: 'id',
+                sidePagination: "server",
+                striped: true,
+                search: true,
+                showRefresh: true,
+                showExport: true,
+                exportDataType: 'basic',
+                exportTypes: ['json', 'xml', 'csv', 'txt', 'sql', 'excel'],
+                pagination: true,
+                pageSize: 10,
+                pageList: [10, 25, 50, 100],
+                cache: false,
+                clickToSelect: true,
+                columns: [
+                    {
+                        field: 'state',
+                        checkbox: true,
+                        align: 'center'
+                    }, {
+                        field: 'id',
+                        title: 'ID',
+                        align: 'center',
+                        visible: false
+                    }, {
+                        field: 'name',
+                        title: '资产组名',
+                        sortable: true,
+                        align: 'center',
+                        formatter: nameFormatter
+                    }, {
+                        field: 'hostnumber',
+                        title: '主机数量',
+                        align: 'center',
+                        formatter: hostnumberFormatter
+                    }, {
+                        field: 'comment',
+                        title: '备注',
+                        align: 'center'
+                    }, {
+                        field: 'operate',
+                        title: '操作',
+                        align: 'center',
+                        events: operateEvents,
+                        formatter: operateFormatter
+                    }
+
+                ]
+            })
+        }
+
+        //组名列方法
+        function nameFormatter(value, row, index) {
+            return [
+                '<a href="{% url 'asset_list' %}?group_id=' + row.id + '">',
+                value + '</a>',
+            ].join('');
+        }
+
+        function hostnumberFormatter(value, row, index) {
+            return [
+                '<a href="{% url 'asset_list' %}?group_id=' + row.id + '">',
+                value + '</a>',
+            ].join('');
+        }
+
+        //操作列方法
+        function operateFormatter(value, row, index) {
+            return [
+                '<a class="edit btn btn-xs btn-default" href="javascript:void(0)" title="edit">',
+                '<i class="fa fa-edit"></i> 编辑',
+                '</a>  ',
+                '<a class="remove btn btn-xs btn-danger" href="javascript:void(0)" title="Remove">',
+                '<i class="fa fa-trash-o"></i> 删除',
+                '</a>'
+            ].join('');
+        }
+
+        window.operateEvents = {
+            'click .edit': function (e, value, row, index) {
+                //alert('You click like action, row: ' + JSON.stringify(row));
+                //Edit(row.id);
+                //alert(row.id);
+                location.href = '{% url 'asset_group_edit' %}?id=' + row.id;
+            },
+            'click .remove': function (e, value, row, index) {
+                $table.bootstrapTable('remove', {
+                    field: 'id',
+                    values: [row.id]
+                });
+            }
+        };
+
+        $(function () {
+            initTable();
+
+            //delete button
+            $("#btn_remove").click(function () {
+                var selected = $table.bootstrapTable('getSelections');
+                if ($(selected).length > 0) {
+                    BootstrapDialog.confirm({
+                        title: "警告",
+                        message: "确定删除选中的" + $(selected).length + "个主机组吗？",
+                        btnCancelLabel: '放弃',
+                        btnCancelClass: 'btn-white',
+                        btnOKLabel: '确认',
+                        btnOKClass: 'btn-default',
+                        callback: function (result) {
+                            if (result) {
+                                var ids = new Array($(selected).length);
+                                $.each(selected, function (index, value) {
+                                    ids[index] = value.id;
+                                });
+                                $.post("{% url 'asset_group_del' %}", {ids: ids}, function (data) {
+                                        if (data.code != 0) {
+                                            $table.bootstrapTable("refresh");
+                                            dialogItself.close();
+                                        }
+                                        else BootstrapDialog.alert(data.message);
+
+                                    }, "json"
+                                );
+                            }
+                        }
+                    });
+                }
+                else BootstrapDialog.warning("请选择要删除的行");
+            });
+        });
+    </script>
+{% endblock %}
