@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'common',
     'debug_toolbar',
     'task',
+    'api',
 ]
 
 MIDDLEWARE = [
