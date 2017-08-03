@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import View, ListView
+from django.views.generic import View, ListView, CreateView, UpdateView
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
@@ -49,4 +49,15 @@ class LogoutView(LoginRequiredMixin, View):
 class UserListView(LoginRequiredMixin, ListView):
     template_name = 'account/user_list.html'
 
+
+class UserAddView(LoginRequiredMixin, CreateView):
+    template_name = 'account/user_add.html'
+
+
+class UserEditView(LoginRequiredMixin, UpdateView):
+    template_name = 'account/user_edit.html'
+
+
+class UserDetailView(LoginRequiredMixin, ListView):
+    template_name = 'account/user_detail.html'
 
