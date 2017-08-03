@@ -17,4 +17,5 @@ class HardwareAssetAddView(LoginRequiredMixin, CreateView):
 
 class HardwareAssetUpdateView(LoginRequiredMixin, UpdateView):
     model = HardwareAsset
+    template_name = 'asset/hardware_asset_add.html'
 
