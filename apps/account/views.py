@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import View, ListView
 from django.http import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
@@ -44,3 +44,9 @@ class LogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         return HttpResponseRedirect('/login')
+
+
+class UserListView(LoginRequiredMixin, ListView):
+    template_name = 'account/user_list.html'
+
+
