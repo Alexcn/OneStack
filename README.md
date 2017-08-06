@@ -11,7 +11,7 @@
 ### 搭建开发环境
 
 ```shell
-取下fork的代码
+git clone https://github.com/itpubs/OneStack.git
 cd OneStack
 pyvenv venv
 source venv/bin/activate
