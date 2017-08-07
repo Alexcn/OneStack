@@ -1,4 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.core import management
+import subprocess
 
 
 class Command(BaseCommand):
@@ -8,4 +10,7 @@ class Command(BaseCommand):
         parser.add_argument('dev', type=str)
 
     def handle(self, *args, **options):
-        pass
+        # self.execute('pip install django')
+        # management.call_command('runserver')
+        subprocess.call('pip install -r requirements/dev.txt', shell=True)
+
