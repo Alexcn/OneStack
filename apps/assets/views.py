@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from django.utils.decorators import method_decorator
 from apps.common.utils import LoginRequiredMixin
 from .models import HardwareAsset
@@ -19,3 +19,6 @@ class HardwareAssetUpdateView(LoginRequiredMixin, UpdateView):
     model = HardwareAsset
     template_name = 'asset/hardware_asset_add.html'
 
+
+class HardwareAssetDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'asset/hardware_asset_detail.html'
