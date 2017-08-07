@@ -21,3 +21,4 @@ pip install -r requirements/dev.txt
 ### 代码风格建议
 
 - 使用类视图代替函数视图
+- 使用form来验证表单
