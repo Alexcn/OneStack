@@ -5,7 +5,9 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth import authenticate, login, logout
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
-from apps.common.utils import LoginRequiredMixin
+# from apps.common.utils import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 
