@@ -1,8 +1,6 @@
 ## OneStack 项目说明
 
-https://img.shields.io/badge/python-3.4%2C3.5%2C3.6-brightgreen.svg
-[![](https://img.shields.io/badge/python-3.4%2C3.5%2C3.6-brightgreen.svg
-)](https://github.com/itpubs/OneStack)
+[![](https://img.shields.io/badge/python-3.4%2C3.5%2C3.6-brightgreen.svg)](https://github.com/itpubs/OneStack)
 
 ### 环境配置
 
