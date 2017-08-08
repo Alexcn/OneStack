@@ -1,10 +1,10 @@
+
+[![](https://img.shields.io/badge/python-3.4%2B-yellowgreen.svg)](https://www.python.org/downloads/)
+
+[![](https://img.shields.io/badge/Dajngo-1.11%2B-green.svg)](https://www.djangoproject.com/download/)
+
 ## OneStack 项目说明
 
-[![](https://img.shields.io/badge/python-3.4%2B-brightgreen.svg)](https://github.com/itpubs/OneStack)
-
-### 环境配置
-
-运行环境: python3.4+, Django1.11.0+
 
 ### 运行截图
 
