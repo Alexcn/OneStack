@@ -1,7 +1,6 @@
 
-[![](https://img.shields.io/badge/python-3.4%2B-yellowgreen.svg)](https://www.python.org/downloads/)
-
-[![](https://img.shields.io/badge/Dajngo-1.11%2B-green.svg)](https://www.djangoproject.com/download/)
+[![](https://img.shields.io/badge/python-3.4-green.svg)](https://www.python.org/download/releases/3.4.0/) [![](https://img.shields.io/badge/python-3.5-green.svg)](https://www.python.org/downloads/release/python-352/)
+[![](https://img.shields.io/badge/python-3.6-green.svg)](https://www.python.org/downloads/release/python-360/) [![](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
 ## OneStack 项目说明
 
