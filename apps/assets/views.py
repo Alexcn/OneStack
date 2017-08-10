@@ -4,6 +4,7 @@ from django.utils.decorators import method_decorator
 # from apps.common.utils import LoginRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import HardwareAsset
+from .forms import HardwareAssetForm
 
 
 class HardwareAssetListView(LoginRequiredMixin, ListView):
