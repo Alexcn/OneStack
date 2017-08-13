@@ -1,0 +1,37 @@
+{
+    "code": 1,
+    "msg": "",
+    "data": [{
+            "value": 1989,
+            "name": "罗湖区"
+        }, {
+            "value": 1990,
+            "name": "福田区"
+        }, {
+            "value": 1991,
+            "name": "南山区"
+        }, {
+            "value": 1992,
+            "name": "宝安区"
+        }, {
+            "value": 1993,
+            "name": "龙岗区"
+        }, {
+            "value": 1994,
+            "name": "盐田区"
+        }, {
+            "value": 1995,
+            "name": "光明新区"
+        }, {
+            "value": 1996,
+            "name": "坪山新区"
+        }, {
+            "value": 1997,
+            "name": "大鹏新区"
+        }, {
+            "value": 1998,
+            "name": "龙华新区"
+        }],
+    "url": "http:\/\/www.fa.com\/admin.php\/example\/cxselect?addtabs=1",
+    "wait": 3
+}

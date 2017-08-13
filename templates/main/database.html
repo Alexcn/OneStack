@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <title>数据库</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="renderer" content="webkit">
+
+        <link rel="shortcut icon" href="assets/img/favicon.ico" />
+        <!-- Loading Bootstrap -->
+        <link href="assets/css/backend.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+        <!--[if lt IE 9]>
+          <script src="assets/js/html5shiv.js"></script>
+          <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+            var require = {
+                "config": {
+                    "site": {
+                        "name": "FastAdmin",
+                        "cdnurl": "./",
+                        "version": "1.0.0",
+                        "timezone": "Asia/Shanghai",
+                        "languages": {
+                            "backend": "zh-cn",
+                            "frontend": "zh-cn"
+                        }
+                    },
+                    "upload": {
+                        "cdnurl": "./",
+                        "uploadurl": "data/upload.json",
+                        "bucket": "yourbucketname",
+                        "maxsize": "10mb",
+                        "mimetype": "*",
+                        "multipart": {
+                            "policy": "eyJidWNrZXQiOiJ5b3VyYnVja2V0bmFtZSIsInNhdmUta2V5IjoiXC91cGxvYWRzXC97eWVhcn17bW9ufXtkYXl9XC97ZmlsZW1kNX17LnN1ZmZpeH0iLCJleHBpcmF0aW9uIjoxNTAwNTI2NTczLCJub3RpZnktdXJsIjoiaHR0cDpcL1wvd3d3LnlvdXJzaXRlLmNvbVwvdXB5dW5cL25vdGlmeSJ9",
+                            "signature": "043eaf09c0319b1a9a11d06511bfdc4e",
+                            "bucket": "yourbucketname",
+                            "save-key": "/uploads/{year}{mon}{day}/{filemd5}{.suffix}",
+                            "expiration": 1500526573,
+                            "notify-url": "http://www.yoursite.com/upyun/notify"
+                        },
+                        "multiple": false
+                    },
+                    "modulename": "admin",
+                    "controllername": "database",
+                    "actionname": "index",
+                    "jsname": "backend/general/database",
+                    "moduleurl": "./",
+                    "language": "zh-cn",
+                    "referer": null
+                }
+            };
+        </script>
+    </head>
+
+    <body class="inside-header inside-aside ">
+        <div id="main" role="main">
+            <div class="tab-content tab-addtabs">
+                <div id="content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <section class="content-header hide">
+                                <h1>
+                                    控制台                                    <small>Control panel</small>
+                                </h1>
+                            </section>
+                            <!-- RIBBON -->
+                            <div id="ribbon">
+                                <ol class="breadcrumb pull-left">
+                                    <li><a href="dashboard" class="addtabsit"><i class="fa fa-dashboard"></i> 控制台</a></li>
+                                </ol>
+                                <ol class="breadcrumb pull-right">
+                                    <li><a href="javascript:;" data-url="general">常规管理</a></li>
+                                    <li><a href="javascript:;" data-url="general/database">数据库管理</a></li>
+                                </ol>
+                            </div>
+                            <!-- END RIBBON -->
+                            <div class="content">
+                                <style type="text/css">
+                                    #searchfloat {position:absolute;top:40px;right:20px;background:#F7F0A0;padding:10px;}
+                                    #saved {position: relative;}
+                                    #saved_sql {position:absolute;bottom:0;height:300px;background:#F7F0A0;width:100%;overflow:auto;display:none;}
+                                    #saved_sql li {display:block;clear:both;width:100%;float:left;line-height:18px;padding:1px 0}
+                                    #saved_sql li a{float:left;text-decoration: none;display:block;padding:0 5px;}
+                                    #saved_sql li i{display:none;float:left;color:#06f;font-size: 14px;font-style: normal;margin-left:2px;line-height:18px;}
+                                    #saved_sql li:hover{background:#fff;}
+                                    #saved_sql li:hover i{display:block;cursor:pointer;}
+                                    #database #tablename {height:205px;width:100%;padding:5px;}
+                                    #database #tablename option{height:18px;}
+                                    #database #subaction {height:210px;width:100%;}
+                                    #database .select-striped > option:nth-of-type(odd) {background-color: #f9f9f9;}
+                                    #database .dropdown-menu ul {margin:-3px 0;}
+                                    #database .dropdown-menu ul li{margin:3px 0;}
+                                    #database .dropdown-menu.row .col-xs-6{padding:0 5px;}
+                                    #sqlquery {font-size:12px;color:#444;}
+                                    #resultparent {padding:5px;}
+                                </style>
+                                <div class="panel panel-default panel-intro">
+
+                                    <div class="panel-body">
+                                        <div id="database" class="tab-content">
+                                            <div class="tab-pane fade active in" id="one">
+                                                <div class="widget-body no-padding">
+
+                                                    <div class="row">
+                                                        <div class="col-xs-4">
+                                                            <h4>查询结果:</h4>
+                                                        </div>
+                                                        <div class="col-xs-8 text-right">
+                                                            <form action="general.database/query" method="post" name="infoform" target="resultframe">
+                                                                <input type="hidden" name="do_action" id="topaction" />
+
+                                                                <div class="btn-group">
+                                                                    <button data-toggle="dropdown" class="btn btn-primary btn-embossed dropdown-toggle" type="button">基础查询 <span class="caret"></span></button>
+                                                                    <div class="row dropdown-menu pull-right" style="width:300px;">
+                                                                        <div class="col-xs-6">
+                                                                            <select class="form-control select-striped" id="tablename" name="tablename[]" multiple="multiple">
+                                                                                <option value="fa_admin" title="">fa_admin<!--(0)--></option>
+                                                                                <option value="fa_admin_log" title="">fa_admin_log<!--(0)--></option>
+                                                                                <option value="fa_article" title="">fa_article<!--(0)--></option>
+                                                                                <option value="fa_attachment" title="">fa_attachment<!--(0)--></option>
+                                                                                <option value="fa_auth_group" title="">fa_auth_group<!--(0)--></option>
+                                                                                <option value="fa_auth_group_access" title="">fa_auth_group_access<!--(0)--></option>
+                                                                                <option value="fa_auth_rule" title="">fa_auth_rule<!--(0)--></option>
+                                                                                <option value="fa_category" title="">fa_category<!--(0)--></option>
+                                                                                <option value="fa_config" title="">fa_config<!--(0)--></option>
+                                                                                <option value="fa_crontab" title="">fa_crontab<!--(0)--></option>
+                                                                                <option value="fa_page" title="">fa_page<!--(0)--></option>
+                                                                                <option value="fa_test" title="">fa_test<!--(0)--></option>
+                                                                                <option value="fa_user" title="">fa_user<!--(0)--></option>
+                                                                                <option value="fa_user_signin" title="">fa_user_signin<!--(0)--></option>
+                                                                                <option value="fa_user_third" title="">fa_user_third<!--(0)--></option>
+                                                                                <option value="fa_version" title="">fa_version<!--(0)--></option>
+                                                                                <option value="fa_wechat_autoreply" title="">fa_wechat_autoreply<!--(0)--></option>
+                                                                                <option value="fa_wechat_config" title="">fa_wechat_config<!--(0)--></option>
+                                                                                <option value="fa_wechat_context" title="">fa_wechat_context<!--(0)--></option>
+                                                                                <option value="fa_wechat_response" title="">fa_wechat_response<!--(0)--></option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-xs-6">
+                                                                            <ul id="subaction" class="list-unstyled">
+                                                                                <li><input type="submit" name="submit1" value="查看表结构" rel="viewinfo" class="btn btn-primary btn-embossed btn-sm btn-block"/></li>
+                                                                                <li><input type="submit" name="submit2" value="查看表数据" rel="viewdata" class="btn btn-primary btn-embossed btn-sm btn-block"/></li>
+                                                                                <li><input type="submit" name="submit3" value="优化表" rel="optimize" class="btn btn-primary btn-embossed btn-sm btn-block" /></li>
+                                                                                <li><input type="submit" name="submit4" value="修复表" rel="repair" class="btn btn-primary btn-embossed btn-sm btn-block"/></li>
+                                                                                <li><input type="submit" name="submit5" value="优化全部表" rel="optimizeall" class="btn btn-primary btn-embossed btn-sm btn-block" /></li>
+                                                                                <li><input type="submit" name="submit6" value="修复全部表" rel="repairall" class="btn btn-primary btn-embossed btn-sm btn-block" /></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="clear"></div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </form>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="well" id="resultparent">
+                                                        <iframe name="resultframe" frameborder="0" id="resultframe" style="height:100%;" width="100%" height="100%"></iframe>
+                                                    </div>
+                                                    <form action="query.php" method="post" id="sqlexecute" name="form1" target="resultframe">
+                                                        <input type="hidden" name="do_action" value="doquery" />
+                                                        <div class="form-group">
+                                                            <textarea name="sqlquery" placeholder="请输入SQL语句，支持批量查询，多条SQL以分号(;)分格" cols="60" rows="5" class="form-control" id="sqlquery"></textarea>
+                                                        </div>
+
+                                                        <input type="submit" class="btn btn-success btn-embossed" value="执行" />
+                                                        <input type="reset" class="btn btn-default btn-embossed" value="重置" />
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/js/require.min.js" data-main="assets/js/require-backend.min.js"></script>
+    </body>
+</html>

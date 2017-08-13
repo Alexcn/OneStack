@@ -1,0 +1,40 @@
+{
+    "total": 2,
+    "rows": [{
+            "id": 2,
+            "type": "sql",
+            "title": "查询一条SQL",
+            "content": "SELECT 1;",
+            "schedule": "* * * * *",
+            "sleep": 0,
+            "maximums": 0,
+            "executes": 5126,
+            "createtime": 1497071095,
+            "updatetime": 1500451560,
+            "begintime": 1483200000,
+            "endtime": 1546272000,
+            "executetime": 1500451560,
+            "weigh": 2,
+            "status": "normal",
+            "nexttime": 1500451620,
+            "type_text": "执行SQL"
+        }, {
+            "id": 1,
+            "type": "url",
+            "title": "请求FastAdmin",
+            "content": "http:\/\/www.fastadmin.net",
+            "schedule": "* * * * *",
+            "sleep": 0,
+            "maximums": 0,
+            "executes": 5126,
+            "createtime": 1497070825,
+            "updatetime": 1500451560,
+            "begintime": 1483200000,
+            "endtime": 1546272000,
+            "executetime": 1500451560,
+            "weigh": 1,
+            "status": "normal",
+            "nexttime": 1500451620,
+            "type_text": "请求URL"
+        }]
+}

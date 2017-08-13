@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <title>自动回复编辑</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="renderer" content="webkit">
+
+        <link rel="shortcut icon" href="assets/img/favicon.ico" />
+        <!-- Loading Bootstrap -->
+        <link href="assets/css/backend.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+        <!--[if lt IE 9]>
+          <script src="assets/js/html5shiv.js"></script>
+          <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+            var require = {
+                "config": {
+                    "site": {
+                        "name": "FastAdmin",
+                        "cdnurl": "./",
+                        "version": "1.0.0",
+                        "timezone": "Asia/Shanghai",
+                        "languages": {
+                            "backend": "zh-cn",
+                            "frontend": "zh-cn"
+                        }
+                    },
+                    "upload": {
+                        "cdnurl": "./",
+                        "uploadurl": "data/upload.json",
+                        "bucket": "yourbucketname",
+                        "maxsize": "10mb",
+                        "mimetype": "*",
+                        "multipart": {
+                            "policy": "eyJidWNrZXQiOiJ5b3VyYnVja2V0bmFtZSIsInNhdmUta2V5IjoiXC91cGxvYWRzXC97eWVhcn17bW9ufXtkYXl9XC97ZmlsZW1kNX17LnN1ZmZpeH0iLCJleHBpcmF0aW9uIjoxNTAwNTI2NTczLCJub3RpZnktdXJsIjoiaHR0cDpcL1wvd3d3LnlvdXJzaXRlLmNvbVwvdXB5dW5cL25vdGlmeSJ9",
+                            "signature": "043eaf09c0319b1a9a11d06511bfdc4e",
+                            "bucket": "yourbucketname",
+                            "save-key": "/uploads/{year}{mon}{day}/{filemd5}{.suffix}",
+                            "expiration": 1500526573,
+                            "notify-url": "http://www.yoursite.com/upyun/notify"
+                        },
+                        "multiple": false
+                    },
+                    "modulename": "admin",
+                    "controllername": "autoreply",
+                    "actionname": "edit",
+                    "jsname": "backend/wechat/autoreply",
+                    "moduleurl": "./",
+                    "language": "zh-cn",
+                    "referer": null
+                }
+            };
+        </script>
+    </head>
+
+    <body class="inside-header inside-aside is-dialog">
+        <div id="main" role="main">
+            <div class="tab-content tab-addtabs">
+                <div id="content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <section class="content-header hide">
+                                <h1>
+                                    控制台                                    <small>Control panel</small>
+                                </h1>
+                            </section>
+                            <div class="content">
+                                <link href="assets/css/wechat/menu.css?v={$site['version']; ?>" rel="stylesheet">
+                                <style>
+                                    .clickbox {margin:0;text-align: left;}
+                                    .create-click {
+                                        margin-left:0;
+                                    }
+                                </style>
+                                <form id="edit-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="data/edit.json">
+
+                                    <div class="form-group">
+                                        <label for="c-title" class="control-label col-xs-12 col-sm-2">标题:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input type="text" name="row[title]" value="输入你好"  id="c-title" class="form-control" data-rule="required" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-text" class="control-label col-xs-12 col-sm-2">文本:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input type="text" name="row[text]" value="你好"  id="c-text" class="form-control" data-rule="required; remote(data/check.json, except=你好)" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-content" class="control-label col-xs-12 col-sm-2">内容:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <div class="clickbox">
+                                                <input type="hidden" name="row[eventkey]" id="c-eventkey" class="form-control" value="58fdfaa9e1965" data-rule="required" readonly />
+                                                <span class="create-click"><a href="wechat.response/select" id="select-resources"><i class="weixin-icon big-add-gray"></i><strong>选择现有资源</strong></a><div class="keytitle">资源名:自动回复2</div></span>
+                                                <span class="create-click"><a href="{:url('wechat.response/add'); ?>" id="add-resources"><i class="weixin-icon big-add-gray"></i><strong>添加新资源</strong></a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-remark" class="control-label col-xs-12 col-sm-2">备注:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input type="text" name="row[remark]" value="sad"  id="c-remark" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-12 col-sm-2">状态:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <label for="row[status]-normal"><input id="row[status]-normal" checked="checked" name="row[status]" type="radio" value="normal"> 正常</label> <label for="row[status]-hidden"><input id="row[status]-hidden" name="row[status]" type="radio" value="hidden"> 隐藏</label>        </div>
+                                    </div>
+                                    <div class="form-group hide layer-footer">
+                                        <label class="control-label col-xs-12 col-sm-2"></label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <button type="submit" class="btn btn-success btn-embossed disabled">确定</button>
+                                            <button type="reset" class="btn btn-default btn-embossed">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/js/require.min.js" data-main="assets/js/require-backend.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <title>分组编辑</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="renderer" content="webkit">
+
+        <link rel="shortcut icon" href="assets/img/favicon.ico" />
+        <!-- Loading Bootstrap -->
+        <link href="assets/css/backend.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+        <!--[if lt IE 9]>
+          <script src="assets/js/html5shiv.js"></script>
+          <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+            var require = {
+                "config": {
+                    "site": {
+                        "name": "FastAdmin",
+                        "cdnurl": "./",
+                        "version": "1.0.0",
+                        "timezone": "Asia/Shanghai",
+                        "languages": {
+                            "backend": "zh-cn",
+                            "frontend": "zh-cn"
+                        }
+                    },
+                    "upload": {
+                        "cdnurl": "./",
+                        "uploadurl": "data/upload.json",
+                        "bucket": "yourbucketname",
+                        "maxsize": "10mb",
+                        "mimetype": "*",
+                        "multipart": {
+                            "policy": "eyJidWNrZXQiOiJ5b3VyYnVja2V0bmFtZSIsInNhdmUta2V5IjoiXC91cGxvYWRzXC97eWVhcn17bW9ufXtkYXl9XC97ZmlsZW1kNX17LnN1ZmZpeH0iLCJleHBpcmF0aW9uIjoxNTAwNTI2NTczLCJub3RpZnktdXJsIjoiaHR0cDpcL1wvd3d3LnlvdXJzaXRlLmNvbVwvdXB5dW5cL25vdGlmeSJ9",
+                            "signature": "043eaf09c0319b1a9a11d06511bfdc4e",
+                            "bucket": "yourbucketname",
+                            "save-key": "/uploads/{year}{mon}{day}/{filemd5}{.suffix}",
+                            "expiration": 1500526573,
+                            "notify-url": "http://www.yoursite.com/upyun/notify"
+                        },
+                        "multiple": false
+                    },
+                    "modulename": "admin",
+                    "controllername": "group",
+                    "actionname": "edit",
+                    "jsname": "backend/auth/group",
+                    "moduleurl": "./",
+                    "language": "zh-cn",
+                    "referer": null
+                }
+            };
+        </script>
+    </head>
+
+    <body class="inside-header inside-aside is-dialog">
+        <div id="main" role="main">
+            <div class="tab-content tab-addtabs">
+                <div id="content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <section class="content-header hide">
+                                <h1>
+                                    控制台                                    <small>Control panel</small>
+                                </h1>
+                            </section>
+                            <div class="content">
+                                <form id="edit-form" class="form-horizontal form-ajax" role="form" method="POST" data-before-submit="refreshrules" action="data/edit.json">
+                                    <input type="hidden" name="row[rules]" value="" />
+                                    <div class="form-group">
+                                        <label for="pid" class="control-label col-xs-12 col-sm-2">父级:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <select class="form-control selectpicker" required="" data-id="2" data-pid="1" name="row[pid]"><option value="1" selected="selected"> 超级管理员</option><option value="2">&nbsp;├ 二级管理员</option><option value="3">&nbsp;│&nbsp;├ 三级管理员</option><option value="5">&nbsp;│&nbsp;└ 三级管理员2</option><option value="4">&nbsp;└ 二级管理员2</option></select>        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username" class="control-label col-xs-12 col-sm-2">名称:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input type="text" class="form-control" id="name" name="row[name]" value="二级管理员" data-rule="required" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nickname" class="control-label col-xs-12 col-sm-2">权限:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <span class="text-muted"><input type="checkbox" name="" id="checkall" /> <label for="checkall"><small>选中全部</small></label></span>
+                                            <span class="text-muted"><input type="checkbox" name="" id="expandall" /> <label for="expandall"><small>展开全部</small></label></span>
+
+                                            <div id="treeview"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="content" class="control-label col-xs-12 col-sm-2">状态:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <label for="row[status]-normal"><input id="row[status]-normal" checked="checked" name="row[status]" type="radio" value="normal"> 正常</label> <label for="row[status]-hidden"><input id="row[status]-hidden" name="row[status]" type="radio" value="hidden"> 隐藏</label>        </div>
+                                    </div>
+                                    <div class="form-group hidden layer-footer">
+                                        <label class="control-label col-xs-12 col-sm-2 col-xs-2"></label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <button type="submit" class="btn btn-success btn-embossed disabled">确定</button>
+                                            <button type="reset" class="btn btn-default btn-embossed">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/js/require.min.js" data-main="assets/js/require-backend.min.js"></script>
+    </body>
+</html>

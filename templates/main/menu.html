@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <title>微信菜单</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="renderer" content="webkit">
+
+        <link rel="shortcut icon" href="assets/img/favicon.ico" />
+        <!-- Loading Bootstrap -->
+        <link href="assets/css/backend.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+        <!--[if lt IE 9]>
+          <script src="assets/js/html5shiv.js"></script>
+          <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+            var require = {
+                "config": {
+                    "site": {
+                        "name": "FastAdmin",
+                        "cdnurl": "./",
+                        "version": "1.0.0",
+                        "timezone": "Asia/Shanghai",
+                        "languages": {
+                            "backend": "zh-cn",
+                            "frontend": "zh-cn"
+                        }
+                    },
+                    "upload": {
+                        "cdnurl": "./",
+                        "uploadurl": "data/upload.json",
+                        "bucket": "yourbucketname",
+                        "maxsize": "10mb",
+                        "mimetype": "*",
+                        "multipart": {
+                            "policy": "eyJidWNrZXQiOiJ5b3VyYnVja2V0bmFtZSIsInNhdmUta2V5IjoiXC91cGxvYWRzXC97eWVhcn17bW9ufXtkYXl9XC97ZmlsZW1kNX17LnN1ZmZpeH0iLCJleHBpcmF0aW9uIjoxNTAwNTI2NTczLCJub3RpZnktdXJsIjoiaHR0cDpcL1wvd3d3LnlvdXJzaXRlLmNvbVwvdXB5dW5cL25vdGlmeSJ9",
+                            "signature": "043eaf09c0319b1a9a11d06511bfdc4e",
+                            "bucket": "yourbucketname",
+                            "save-key": "/uploads/{year}{mon}{day}/{filemd5}{.suffix}",
+                            "expiration": 1500526573,
+                            "notify-url": "http://www.yoursite.com/upyun/notify"
+                        },
+                        "multiple": false
+                    },
+                    "modulename": "admin",
+                    "controllername": "menu",
+                    "actionname": "index",
+                    "jsname": "backend/wechat/menu",
+                    "moduleurl": "./",
+                    "language": "zh-cn",
+                    "referer": null
+                }
+            };
+        </script>
+    </head>
+
+    <body class="inside-header inside-aside ">
+        <div id="main" role="main">
+            <div class="tab-content tab-addtabs">
+                <div id="content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <section class="content-header hide">
+                                <h1>
+                                    控制台                                    <small>Control panel</small>
+                                </h1>
+                            </section>
+                            <!-- RIBBON -->
+                            <div id="ribbon">
+                                <ol class="breadcrumb pull-left">
+                                    <li><a href="dashboard" class="addtabsit"><i class="fa fa-dashboard"></i> 控制台</a></li>
+                                </ol>
+                                <ol class="breadcrumb pull-right">
+                                    <li><a href="javascript:;" data-url="wechat">微信管理</a></li>
+                                    <li><a href="javascript:;" data-url="wechat/menu">菜单管理</a></li>
+                                </ol>
+                            </div>
+                            <!-- END RIBBON -->
+                            <div class="content">
+                                <link href="assets/css/wechat/menu.css" rel="stylesheet">
+                                <div class="panel panel-default panel-intro">
+
+                                    <div class="panel-body">
+                                        <div id="myTabContent" class="tab-content">
+                                            <div class="tab-pane fade active in" id="one">
+                                                <div class="widget-body no-padding">
+                                                    <div class="weixin-menu-setting clearfix">
+                                                        <div class="mobile-menu-preview">
+                                                            <div class="mobile-head-title">FastAdmin</div>
+                                                            <ul class="menu-list" id="menu-list">
+                                                                <li class="add-item extra" id="add-item">
+                                                                    <a href="javascript:;" class="menu-link" title="添加菜单"><i class="weixin-icon add-gray"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="weixin-body">
+                                                            <div class="weixin-content" style="display:none">
+                                                                <div class="item-info">
+                                                                    <form id="form-item" class="form-item" data-value="" >
+                                                                        <div class="item-head">
+                                                                            <h4 id="current-item-name">添加子菜单</h4>
+                                                                            <div class="item-delete"><a href="javascript:;" id="item_delete">删除菜单</a></div>
+                                                                        </div>
+                                                                        <div style="margin-top: 20px;">
+                                                                            <dl>
+                                                                                <dt id="current-item-option"><span class="is-sub-item">子</span>菜单标题：</dt>
+                                                                                <dd><div class="input-box"><input id="item_title" name="item-title" type="text" value=""></div></dd>
+                                                                            </dl>
+                                                                            <dl class="is-item">
+                                                                                <dt id="current-item-type"><span class="is-sub-item">子</span>菜单内容：</dt>
+                                                                                <dd>
+                                                                                    <input id="type1" type="radio" name="type" value="click"><label for="type1" data-editing="1"><span class="lbl_content">发送消息</span></label>
+                                                                                    <input id="type2" type="radio" name="type" value="view" ><label for="type2"  data-editing="1"><span class="lbl_content">跳转网页</span></label>
+                                                                                    <input id="type3" type="radio" name="type" value="scancode_push"><label for="type3" data-editing="1"><span class="lbl_content">扫码推</span></label>
+                                                                                    <input id="type4" type="radio" name="type" value="scancode_waitmsg"><label for="type4" data-editing="1"><span class="lbl_content">扫码推提示框</span></label>
+                                                                                    <input id="type5" type="radio" name="type" value="pic_sysphoto"><label for="type5" data-editing="1"><span class="lbl_content">拍照发图</span></label>
+                                                                                    <input id="type6" type="radio" name="type" value="pic_photo_or_album"><label for="type6" data-editing="1"><span class="lbl_content">拍照相册发图</span></label>
+                                                                                    <input id="type7" type="radio" name="type" value="pic_weixin"><label for="type7" data-editing="1"><span class="lbl_content">相册发图</span></label>
+                                                                                    <input id="type8" type="radio" name="type" value="location_select"><label for="type8" data-editing="1"><span class="lbl_content">地理位置选择</span></label>
+                                                                                </dd>
+                                                                            </dl>
+                                                                            <div id="menu-content" class="is-item">
+                                                                                <div class="viewbox is-view">
+                                                                                    <p class="menu-content-tips">点击该<span class="is-sub-item">子</span>菜单会跳到以下链接</p>
+                                                                                    <dl>
+                                                                                        <dt>页面地址：</dt>
+                                                                                        <dd><div class="input-box"><input type="text" id="url" name="url"></div>
+                                                                                        </dd>
+                                                                                    </dl>
+                                                                                </div>
+                                                                                <div class="clickbox is-click" style="display: none;">
+                                                                                    <input type="hidden" name="key" id="key" value="" />
+                                                                                    <span class="create-click"><a href="response-select.html" id="select-resources"><i class="weixin-icon big-add-gray"></i><strong>选择现有资源</strong></a></span>
+                                                                                    <span class="create-click"><a href="response-edit.html" id="add-resources"><i class="weixin-icon big-add-gray"></i><strong>添加新资源</strong></a></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="no-weixin-content">
+                                                                点击左侧菜单进行编辑操作
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xs-4 text-center text-danger">
+                                                            <i class="fa fa-lightbulb-o"></i> <small>可直接拖动菜单排序</small>
+                                                        </div>
+                                                        <div class="col-xs-8 text-center"><a href="javascript:;" id="menuSyn" class="btn btn-danger">保存并发布</a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                    var menu = [{"name":"FastAdmin", "sub_button":[{"name":"官网", "type":"view", "url":"http:\/\/www.fastadmin.net"}, {"name":"在线演示", "type":"view", "url":"http:\/\/demo.fastadmin.net"}, {"name":"文档", "type":"view", "url":"http:\/\/doc.fastadmin.net"}]}, {"name":"在线客服", "type":"click", "key":"58cb852984970"}, {"name":"关于我们", "type":"click", "key":"58bf944aa0777"}];
+                                    var responselist = {"58adaf7876aab":"签到送积分", "58bf944aa0777":"关于我们", "58c7d908c4570":"自动回复1", "58cb852984970":"联系客服", "58fdfaa9e1965":"自动回复2"};</script>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/js/require.min.js" data-main="assets/js/require-backend.min.js"></script>
+    </body>
+</html>

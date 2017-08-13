@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <title>资源编辑</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="renderer" content="webkit">
+
+        <link rel="shortcut icon" href="assets/img/favicon.ico" />
+        <!-- Loading Bootstrap -->
+        <link href="assets/css/backend.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+        <!--[if lt IE 9]>
+          <script src="assets/js/html5shiv.js"></script>
+          <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+            var require = {
+                "config": {
+                    "site": {
+                        "name": "FastAdmin",
+                        "cdnurl": "./",
+                        "version": "1.0.0",
+                        "timezone": "Asia/Shanghai",
+                        "languages": {
+                            "backend": "zh-cn",
+                            "frontend": "zh-cn"
+                        }
+                    },
+                    "upload": {
+                        "cdnurl": "./",
+                        "uploadurl": "data/upload.json",
+                        "bucket": "yourbucketname",
+                        "maxsize": "10mb",
+                        "mimetype": "*",
+                        "multipart": {
+                            "policy": "eyJidWNrZXQiOiJ5b3VyYnVja2V0bmFtZSIsInNhdmUta2V5IjoiXC91cGxvYWRzXC97eWVhcn17bW9ufXtkYXl9XC97ZmlsZW1kNX17LnN1ZmZpeH0iLCJleHBpcmF0aW9uIjoxNTAwNTI2NTczLCJub3RpZnktdXJsIjoiaHR0cDpcL1wvd3d3LnlvdXJzaXRlLmNvbVwvdXB5dW5cL25vdGlmeSJ9",
+                            "signature": "043eaf09c0319b1a9a11d06511bfdc4e",
+                            "bucket": "yourbucketname",
+                            "save-key": "/uploads/{year}{mon}{day}/{filemd5}{.suffix}",
+                            "expiration": 1500526573,
+                            "notify-url": "http://www.yoursite.com/upyun/notify"
+                        },
+                        "multiple": false
+                    },
+                    "modulename": "admin",
+                    "controllername": "response",
+                    "actionname": "edit",
+                    "jsname": "backend/wechat/response",
+                    "moduleurl": "./",
+                    "language": "zh-cn",
+                    "referer": null
+                }
+            };
+        </script>
+    </head>
+
+    <body class="inside-header inside-aside is-dialog">
+        <div id="main" role="main">
+            <div class="tab-content tab-addtabs">
+                <div id="content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <section class="content-header hide">
+                                <h1>
+                                    控制台                                    <small>Control panel</small>
+                                </h1>
+                            </section>
+                            <div class="content">
+                                <form id="edit-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="data/edit.json">
+
+                                    <div class="form-group">
+                                        <label for="module" class="control-label col-xs-12 col-sm-2">资源标题:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input type="text" class="form-control" id="title" name="row[title]" value="联系客服" data-rule="required" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="controller" class="control-label col-xs-12 col-sm-2">事件标识:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input type='text' class="form-control" id="eventkey" name="row[eventkey]" value="58cb852984970" data-rule="required" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="remark" class="control-label col-xs-12 col-sm-2">备注:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <textarea class="form-control" id="remark" name="row[remark]"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="content" class="control-label col-xs-12 col-sm-2">类型:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <label for="row[type]-text"><input id="row[type]-text" name="row[type]" type="radio" value="text"> 文本</label> <label for="row[type]-app"><input id="row[type]-app" checked="checked" name="row[type]" type="radio" value="app"> 应用</label>        </div>
+                                    </div>
+                                    <div id="expand">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-2"></div>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <label for="row[status]-normal"><input id="row[status]-normal" checked="checked" name="row[status]" type="radio" value="normal"> 正常</label> <label for="row[status]-hidden"><input id="row[status]-hidden" name="row[status]" type="radio" value="hidden"> 隐藏</label>        </div>
+                                    </div>
+                                    <div class="form-group hidden layer-footer">
+                                        <div class="col-xs-2"></div>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <button type="submit" class="btn btn-success btn-embossed disabled">确定</button>
+                                            <button type="reset" class="btn btn-default btn-embossed">重置</button>
+                                        </div>
+                                    </div>
+                                    <select name="applist" disabled="true" class="hidden">
+                                        <option value="signin">签到送积分</option>
+                                        <option value="article">关联文章</option>
+                                        <option value="page">关联单页</option>
+                                        <option value="service">在线客服</option>
+                                    </select>
+                                </form>
+                                <script>
+                                    var apps = {"signin":{"name":"\u7b7e\u5230\u9001\u79ef\u5206", "config":[]}, "article":{"name":"\u5173\u8054\u6587\u7ae0", "config":[{"type":"text", "caption":"\u6587\u7ae0ID", "field":"id", "options":""}]}, "page":{"name":"\u5173\u8054\u5355\u9875", "config":[{"type":"text", "caption":"\u5355\u9875ID", "field":"id", "options":""}]}, "service":{"name":"\u5728\u7ebf\u5ba2\u670d", "config":[]}};
+                                    var datas = {"app":"service"};</script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/js/require.min.js" data-main="assets/js/require-backend.min.js"></script>
+    </body>
+</html>

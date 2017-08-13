@@ -1,0 +1,16 @@
+{
+    "rows": [{
+            "id": 3,
+            "nickname": "admin",
+            "username": "admin"
+        }, {
+            "id": 2,
+            "nickname": "admin2",
+            "username": "admin2"
+        }, {
+            "id": 1,
+            "nickname": "admin1",
+            "username": "admin1"
+        }],
+    "total": 3
+}

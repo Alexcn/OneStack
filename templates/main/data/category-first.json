@@ -1,0 +1,13 @@
+{
+    "code": 1,
+    "msg": "",
+    "data": [{
+            "value": 7,
+            "name": "企业管理软件"
+        }, {
+            "value": 6,
+            "name": "网站建站"
+        }],
+    "url": "http:\/\/www.fa.com\/admin.php\/example\/cxselect?addtabs=1",
+    "wait": 3
+}

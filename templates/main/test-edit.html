@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <title>测试编辑</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="renderer" content="webkit">
+
+        <link rel="shortcut icon" href="assets/img/favicon.ico" />
+        <!-- Loading Bootstrap -->
+        <link href="assets/css/backend.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+        <!--[if lt IE 9]>
+          <script src="assets/js/html5shiv.js"></script>
+          <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+            var require = {
+                "config": {
+                    "site": {
+                        "name": "FastAdmin",
+                        "cdnurl": "./",
+                        "version": "1.0.0",
+                        "timezone": "Asia/Shanghai",
+                        "languages": {
+                            "backend": "zh-cn",
+                            "frontend": "zh-cn"
+                        }
+                    },
+                    "upload": {
+                        "cdnurl": "./",
+                        "uploadurl": "data/upload.json",
+                        "bucket": "yourbucketname",
+                        "maxsize": "10mb",
+                        "mimetype": "*",
+                        "multipart": {
+                            "policy": "eyJidWNrZXQiOiJ5b3VyYnVja2V0bmFtZSIsInNhdmUta2V5IjoiXC91cGxvYWRzXC97eWVhcn17bW9ufXtkYXl9XC97ZmlsZW1kNX17LnN1ZmZpeH0iLCJleHBpcmF0aW9uIjoxNTAwNTI2NTczLCJub3RpZnktdXJsIjoiaHR0cDpcL1wvd3d3LnlvdXJzaXRlLmNvbVwvdXB5dW5cL25vdGlmeSJ9",
+                            "signature": "043eaf09c0319b1a9a11d06511bfdc4e",
+                            "bucket": "yourbucketname",
+                            "save-key": "/uploads/{year}{mon}{day}/{filemd5}{.suffix}",
+                            "expiration": 1500526573,
+                            "notify-url": "http://www.yoursite.com/upyun/notify"
+                        },
+                        "multiple": false
+                    },
+                    "modulename": "admin",
+                    "controllername": "test",
+                    "actionname": "edit",
+                    "jsname": "backend/test",
+                    "moduleurl": "./",
+                    "language": "zh-cn",
+                    "referer": null
+                }
+            };
+        </script>
+    </head>
+
+    <body class="inside-header inside-aside is-dialog">
+        <div id="main" role="main">
+            <div class="tab-content tab-addtabs">
+                <div id="content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <section class="content-header hide">
+                                <h1>
+                                    控制台                                    <small>Control panel</small>
+                                </h1>
+                            </section>
+                            <div class="content">
+                                <form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="data/edit.json">
+
+                                    <div class="form-group">
+                                        <label for="c-category_id" class="control-label col-xs-12 col-sm-2">分类ID(单选):</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-category_id" data-rule="required" data-source="data/category-selectpage.json" data-params='{"custom[type]":"test"}' class="form-control selectpage" name="row[category_id]" type="text" value="12">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-category_ids" class="control-label col-xs-12 col-sm-2">分类ID(多选):</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-category_ids" data-rule="required" data-source="data/category-selectpage.json" data-params='{"custom[type]":"test"}' data-multiple="true" class="form-control selectpage" name="row[category_ids]" type="text" value="12,13">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-user_id" class="control-label col-xs-12 col-sm-2">会员ID:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-user_id" data-rule="required" data-source="data/user-selectpage.json" data-field="nickname" class="form-control selectpage" name="row[user_id]" type="text" value="3">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-user_ids" class="control-label col-xs-12 col-sm-2">多会员ID:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-user_ids" data-rule="required" data-source="data/user-selectpage.json" data-multiple="true" data-field="nickname" class="form-control selectpage" name="row[user_ids]" type="text" value="3">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-week" class="control-label col-xs-12 col-sm-2">星期(单选):</label>
+                                        <div class="col-xs-12 col-sm-8">
+
+                                            <select  id="c-week" class="form-control selectpicker" name="row[week]">
+                                                <option value="monday" selected>星期一</option>
+                                                <option value="tuesday" >星期二</option>
+                                                <option value="wednesday" >星期三</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-flag" class="control-label col-xs-12 col-sm-2">标志(多选):</label>
+                                        <div class="col-xs-12 col-sm-8">
+
+                                            <select  id="c-flag" data-rule="required" class="form-control selectpicker" multiple="" name="row[flag][]">
+                                                <option value="hot" selected>热门</option>
+                                                <option value="index" selected>首页</option>
+                                                <option value="recommend" >推荐</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-genderdata" class="control-label col-xs-12 col-sm-2">性别(单选):</label>
+                                        <div class="col-xs-12 col-sm-8">
+
+                                            <label for="row[genderdata]-male"><input id="row[genderdata]-male" name="row[genderdata]" type="radio" value="male" checked /> 男</label> 
+                                            <label for="row[genderdata]-female"><input id="row[genderdata]-female" name="row[genderdata]" type="radio" value="female"  /> 女</label> 
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-hobbydata" class="control-label col-xs-12 col-sm-2">爱好(多选):</label>
+                                        <div class="col-xs-12 col-sm-8">
+
+                                            <label for="row[hobbydata][]-music"><input id="row[hobbydata][]-music" name="row[hobbydata][]" type="checkbox" value="music" checked /> 音乐</label> 
+                                            <label for="row[hobbydata][]-reading"><input id="row[hobbydata][]-reading" name="row[hobbydata][]" type="checkbox" value="reading" checked /> 读书</label> 
+                                            <label for="row[hobbydata][]-swimming"><input id="row[hobbydata][]-swimming" name="row[hobbydata][]" type="checkbox" value="swimming"  /> 游泳</label> 
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-title" class="control-label col-xs-12 col-sm-2">标题:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-title" data-rule="required" class="form-control" name="row[title]" type="text" value="我是一篇测试文章">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-content" class="control-label col-xs-12 col-sm-2">内容:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <textarea id="c-content" class="form-control summernote" rows="5" name="row[content]" cols="50"><p>我是测试内容</p></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-image" class="control-label col-xs-12 col-sm-2">图片:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <div class="form-inline">
+                                                <input id="c-image" data-rule="required" class="form-control" size="50" name="row[image]" type="text" value="assets/img/avatar.png">
+                                                <span><button type="button" id="plupload-image" class="btn btn-danger plupload" data-input-id="c-image" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-image"><i class="fa fa-upload"></i> 上传</button></span>
+                                                <span><button type="button" id="fachoose-image" class="btn btn-primary fachoose" data-input-id="c-image" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+                                                <ul class="row list-inline plupload-preview" id="p-image"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-images" class="control-label col-xs-12 col-sm-2">图片组:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <div class="form-inline">
+                                                <input id="c-images" data-rule="required" class="form-control" size="50" name="row[images]" type="text" value="assets/img/avatar.png,/assets/img/qrcode.png">
+                                                <span><button type="button" id="plupload-images" class="btn btn-danger plupload" data-input-id="c-images" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="true" data-preview-id="p-images"><i class="fa fa-upload"></i> 上传</button></span>
+                                                <span><button type="button" id="fachoose-images" class="btn btn-primary fachoose" data-input-id="c-images" data-mimetype="image/*" data-multiple="true"><i class="fa fa-list"></i> 选择</button></span>
+                                                <ul class="row list-inline plupload-preview" id="p-images"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-attachfile" class="control-label col-xs-12 col-sm-2">附件:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <div class="form-inline">
+                                                <input id="c-attachfile" data-rule="required" class="form-control" size="50" name="row[attachfile]" type="text" value="assets/img/avatar.png">
+                                                <span><button type="button" id="plupload-attachfile" class="btn btn-danger plupload" data-input-id="c-attachfile" data-multiple="false"><i class="fa fa-upload"></i> 上传</button></span>
+                                                <span><button type="button" id="fachoose-attachfile" class="btn btn-primary fachoose" data-input-id="c-attachfile" data-multiple="false"><i class="fa fa-list"></i> 选择</button></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-keywords" class="control-label col-xs-12 col-sm-2">关键字:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-keywords" data-rule="required" class="form-control" name="row[keywords]" type="text" value="关键字">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-description" class="control-label col-xs-12 col-sm-2">描述:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-description" data-rule="required" class="form-control" name="row[description]" type="text" value="描述">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-price" class="control-label col-xs-12 col-sm-2">价格:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-price" data-rule="required" class="form-control" step="0.01" name="row[price]" type="number" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-views" class="control-label col-xs-12 col-sm-2">点击:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-views" data-rule="required" class="form-control" name="row[views]" type="number" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-startdate" class="control-label col-xs-12 col-sm-2">开始日期:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-startdate" class="form-control datetimepicker" data-date-format="YYYY-MM-DD" data-use-current="true" name="row[startdate]" type="text" value="2017-07-10">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-activitytime" class="control-label col-xs-12 col-sm-2">活动时间(datetime):</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-activitytime" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[activitytime]" type="text" value="2017-07-10 18:24:45">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-year" class="control-label col-xs-12 col-sm-2">年:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-year" class="form-control datetimepicker" data-date-format="YYYY" data-use-current="true" name="row[year]" type="text" value="2017">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-times" class="control-label col-xs-12 col-sm-2">时间:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-times" class="form-control datetimepicker" data-date-format="HH:mm:ss" data-use-current="true" name="row[times]" type="text" value="18:24:45">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-refreshtime" class="control-label col-xs-12 col-sm-2">刷新时间(int):</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-refreshtime" data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[refreshtime]" type="text" value="2017-07-10 18:24:45">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-weigh" class="control-label col-xs-12 col-sm-2">权重:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-weigh" data-rule="required" class="form-control" name="row[weigh]" type="number" value="0">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-switch" class="control-label col-xs-12 col-sm-2">开关:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input checked="" id="c-switch" name="row[switch]" type="hidden" value="0"><label for="row[switch]-switch"><input id="row[switch]-switch" name="row[switch]" type="checkbox" checked value="1"> abcdefg</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-status" class="control-label col-xs-12 col-sm-2">状态:</label>
+                                        <div class="col-xs-12 col-sm-8">
+
+                                            <label for="row[status]-normal"><input id="row[status]-normal" name="row[status]" type="radio" value="normal" checked /> 正常</label> 
+                                            <label for="row[status]-hidden"><input id="row[status]-hidden" name="row[status]" type="radio" value="hidden"  /> 隐藏</label> 
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-state" class="control-label col-xs-12 col-sm-2">状态值:</label>
+                                        <div class="col-xs-12 col-sm-8">
+
+                                            <label for="row[state]-0"><input id="row[state]-0" name="row[state]" type="radio" value="0"  /> 禁用</label> 
+                                            <label for="row[state]-1"><input id="row[state]-1" name="row[state]" type="radio" value="1" checked /> 正常</label> 
+                                            <label for="row[state]-2"><input id="row[state]-2" name="row[state]" type="radio" value="2"  /> 推荐</label> 
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group layer-footer">
+                                        <label class="control-label col-xs-12 col-sm-2"></label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <button type="submit" class="btn btn-success btn-embossed disabled">确定</button>
+                                            <button type="reset" class="btn btn-default btn-embossed">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/js/require.min.js" data-main="assets/js/require-backend.min.js"></script>
+    </body>
+</html>

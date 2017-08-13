@@ -1,0 +1,25 @@
+{
+    "total": 3,
+    "rows": [{
+            "id": 3,
+            "name": "signin",
+            "title": "连续登录配置",
+            "value": "{\"s1\":\"100\",\"s2\":\"200\",\"s3\":\"300\",\"sn\":\"500\"}",
+            "createtime": 1497429711,
+            "updatetime": 1497429711
+        }, {
+            "id": 2,
+            "name": "service",
+            "title": "客服配置",
+            "value": "{\"onlinetime\":\"09:00-18:00\",\"offlinemsg\":\"请在工作时间联系客服！\",\"nosessionmsg\":\"当前没有客服在线！请稍后重试！\",\"waitformsg\":\"请问有什么可以帮到您？\"}",
+            "createtime": 1497429674,
+            "updatetime": 1497429674
+        }, {
+            "id": 1,
+            "name": "menu",
+            "title": "微信菜单",
+            "value": "[{\"name\":\"FastAdmin\",\"sub_button\":[{\"name\":\"官网\",\"type\":\"view\",\"url\":\"http:\\\/\\\/www.fastadmin.net\"},{\"name\":\"在线演示\",\"type\":\"view\",\"url\":\"http:\\\/\\\/demo.fastadmin.net\"},{\"name\":\"文档\",\"type\":\"view\",\"url\":\"http:\\\/\\\/doc.fastadmin.net\"}]},{\"name\":\"在线客服\",\"type\":\"click\",\"key\":\"58cb852984970\"},{\"name\":\"关于我们\",\"type\":\"click\",\"key\":\"58bf944aa0777\"}]",
+            "createtime": 1497398820,
+            "updatetime": 1497422985
+        }]
+}

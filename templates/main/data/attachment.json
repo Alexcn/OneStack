@@ -1,0 +1,20 @@
+{
+    "total": 1,
+    "rows": [{
+            "id": 1,
+            "url": "\/assets\/img\/qrcode.png",
+            "imagewidth": "150",
+            "imageheight": "150",
+            "imagetype": "png",
+            "imageframes": 0,
+            "filesize": 21859,
+            "mimetype": "image\/png",
+            "extparam": "",
+            "createtime": 1499681848,
+            "updatetime": 1499681848,
+            "uploadtime": 1499681848,
+            "storage": "local",
+            "sha1": "17163603d0263e4838b9387ff2cd4877e8b018f6",
+            "fullurl": "\/assets\/img\/qrcode.png"
+        }]
+}

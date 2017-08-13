@@ -1,0 +1,10 @@
+{
+    "code": 1,
+    "data": {
+        "id": 1,
+        "username": "admin",
+        "avatar": "/assets/img/avatar.png",
+        "url": "index.html"
+    },
+    "url": "index.html"
+}

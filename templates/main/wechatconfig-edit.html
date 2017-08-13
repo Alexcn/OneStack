@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <title>微信配置编辑</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="renderer" content="webkit">
+
+        <link rel="shortcut icon" href="assets/img/favicon.ico" />
+        <!-- Loading Bootstrap -->
+        <link href="assets/css/backend.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+        <!--[if lt IE 9]>
+          <script src="assets/js/html5shiv.js"></script>
+          <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript">
+            var require = {
+                "config": {
+                    "site": {
+                        "name": "FastAdmin",
+                        "cdnurl": "./",
+                        "version": "1.0.0",
+                        "timezone": "Asia/Shanghai",
+                        "languages": {
+                            "backend": "zh-cn",
+                            "frontend": "zh-cn"
+                        }
+                    },
+                    "upload": {
+                        "cdnurl": "./",
+                        "uploadurl": "data/upload.json",
+                        "bucket": "yourbucketname",
+                        "maxsize": "10mb",
+                        "mimetype": "*",
+                        "multipart": {
+                            "policy": "eyJidWNrZXQiOiJ5b3VyYnVja2V0bmFtZSIsInNhdmUta2V5IjoiXC91cGxvYWRzXC97eWVhcn17bW9ufXtkYXl9XC97ZmlsZW1kNX17LnN1ZmZpeH0iLCJleHBpcmF0aW9uIjoxNTAwNTI2NTczLCJub3RpZnktdXJsIjoiaHR0cDpcL1wvd3d3LnlvdXJzaXRlLmNvbVwvdXB5dW5cL25vdGlmeSJ9",
+                            "signature": "043eaf09c0319b1a9a11d06511bfdc4e",
+                            "bucket": "yourbucketname",
+                            "save-key": "/uploads/{year}{mon}{day}/{filemd5}{.suffix}",
+                            "expiration": 1500526573,
+                            "notify-url": "http://www.yoursite.com/upyun/notify"
+                        },
+                        "multiple": false
+                    },
+                    "modulename": "admin",
+                    "controllername": "config",
+                    "actionname": "edit",
+                    "jsname": "backend/wechat/config",
+                    "moduleurl": "./",
+                    "language": "zh-cn",
+                    "referer": null
+                }
+            };
+        </script>
+    </head>
+
+    <body class="inside-header inside-aside is-dialog">
+        <div id="main" role="main">
+            <div class="tab-content tab-addtabs">
+                <div id="content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <section class="content-header hide">
+                                <h1>
+                                    控制台                                    <small>Control panel</small>
+                                </h1>
+                            </section>
+                            <div class="content">
+                                <form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="data/edit.json">
+                                    <input type="hidden" name="row[mode]" value="textarea" />
+                                    <div class="form-group">
+                                        <label for="c-name" class="control-label col-xs-12 col-sm-2">配置名称:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-name" data-rule="required" class="form-control" name="row[name]" type="text" value="signin">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-title" class="control-label col-xs-12 col-sm-2">标题:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <input id="c-title" data-rule="required" class="form-control" name="row[title]" type="text" value="连续登录配置">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="c-value" class="control-label col-xs-12 col-sm-2">配置值:</label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <p>
+                                                <a href="javascript:;" class="btn btn-info btn-jsoneditor"><i class="fa fa-pencil"></i> Json editor</a>
+                                                <a href="javascript:;" class="btn btn-primary btn-insertlink"><i class="fa fa-link"></i> Insert link</a>
+                                            </p>
+                                            <textarea id="c-value" class="form-control " rows="15" name="row[value]">{"s1":"100","s2":"200","s3":"300","sn":"500"}</textarea>
+                                            <dl class="fieldlist hide" rel="4">
+                                                <dd>
+                                                    <ins>键</ins>
+                                                    <ins>值</ins>
+                                                </dd>
+                                                <dd class="form-inline">
+                                                    <input type="text" name="field[s1]" class="form-control" id="field-s1" value="s1" size="10" />
+                                                    <input type="text" name="value[s1]" class="form-control" id="value-s1" value="100" size="40" />
+                                                    <span class="btn btn-sm btn-danger btn-remove"><i class="fa fa-times"></i></span>
+                                                    <span class="btn btn-sm btn-primary btn-dragsort"><i class="fa fa-arrows"></i></span>
+                                                </dd>
+                                                <dd class="form-inline">
+                                                    <input type="text" name="field[s2]" class="form-control" id="field-s2" value="s2" size="10" />
+                                                    <input type="text" name="value[s2]" class="form-control" id="value-s2" value="200" size="40" />
+                                                    <span class="btn btn-sm btn-danger btn-remove"><i class="fa fa-times"></i></span>
+                                                    <span class="btn btn-sm btn-primary btn-dragsort"><i class="fa fa-arrows"></i></span>
+                                                </dd>
+                                                <dd class="form-inline">
+                                                    <input type="text" name="field[s3]" class="form-control" id="field-s3" value="s3" size="10" />
+                                                    <input type="text" name="value[s3]" class="form-control" id="value-s3" value="300" size="40" />
+                                                    <span class="btn btn-sm btn-danger btn-remove"><i class="fa fa-times"></i></span>
+                                                    <span class="btn btn-sm btn-primary btn-dragsort"><i class="fa fa-arrows"></i></span>
+                                                </dd>
+                                                <dd class="form-inline">
+                                                    <input type="text" name="field[sn]" class="form-control" id="field-sn" value="sn" size="10" />
+                                                    <input type="text" name="value[sn]" class="form-control" id="value-sn" value="500" size="40" />
+                                                    <span class="btn btn-sm btn-danger btn-remove"><i class="fa fa-times"></i></span>
+                                                    <span class="btn btn-sm btn-primary btn-dragsort"><i class="fa fa-arrows"></i></span>
+                                                </dd>
+                                                <dd><a href="javascript:;" class="append btn btn-sm btn-success"><i class="fa fa-plus"></i> 追加</a></dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                    <div class="form-group hide layer-footer">
+                                        <label class="control-label col-xs-12 col-sm-2"></label>
+                                        <div class="col-xs-12 col-sm-8">
+                                            <button type="submit" class="btn btn-success btn-embossed disabled">确定</button>
+                                            <button type="reset" class="btn btn-default btn-embossed">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/js/require.min.js" data-main="assets/js/require-backend.min.js"></script>
+    </body>
+</html>

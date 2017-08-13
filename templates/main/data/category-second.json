@@ -1,0 +1,13 @@
+{
+    "code": 1,
+    "msg": "",
+    "data": [{
+            "value": 9,
+            "name": "移动端"
+        }, {
+            "value": 8,
+            "name": "PC端"
+        }],
+    "url": "http:\/\/www.fa.com\/admin.php\/example\/cxselect?addtabs=1",
+    "wait": 3
+}

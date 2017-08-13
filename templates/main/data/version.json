@@ -1,0 +1,16 @@
+{
+    "total": 1,
+    "rows": [{
+            "id": 1,
+            "oldversion": "1.1.1,2",
+            "newversion": "1.2.1",
+            "packagesize": "20M",
+            "content": "更新内容",
+            "downloadurl": "http:\/\/www.downloadurl.com",
+            "enforce": 1,
+            "createtime": 1400000000,
+            "updatetime": 0,
+            "weigh": 0,
+            "status": "normal"
+        }]
+}
