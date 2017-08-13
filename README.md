@@ -4,11 +4,12 @@
 
 ### 运行截图
 
-- 环境依赖：Python3.4+, PostgreSQL9.4+
 
 ### 系统架构
 
 ### 搭建开发环境
+
+- 环境依赖：Python3.4+, PostgreSQL9.4+
 
 ```shell
 git clone https://github.com/itpubs/OneStack.git
