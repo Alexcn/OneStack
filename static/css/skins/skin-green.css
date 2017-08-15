@@ -3,10 +3,10 @@
  * -----------
  */
 .skin-green .main-header .navbar {
-  background-color: #00a65a;
+  background-color: #18bc9c;
 }
 .skin-green .main-header .navbar .nav > li > a {
-  color: #ffffff;
+  color: #fff;
 }
 .skin-green .main-header .navbar .nav > li > a:hover,
 .skin-green .main-header .navbar .nav > li > a:active,
@@ -19,7 +19,7 @@
   color: #f6f6f6;
 }
 .skin-green .main-header .navbar .sidebar-toggle {
-  color: #ffffff;
+  color: #fff;
 }
 .skin-green .main-header .navbar .sidebar-toggle:hover {
   color: #f6f6f6;
@@ -29,7 +29,7 @@
   color: #fff;
 }
 .skin-green .main-header .navbar .sidebar-toggle:hover {
-  background-color: #008d4c;
+  background-color: #15a589;
 }
 @media (max-width: 767px) {
   .skin-green .main-header .navbar .dropdown-menu li.divider {
@@ -39,19 +39,19 @@
     color: #fff;
   }
   .skin-green .main-header .navbar .dropdown-menu li a:hover {
-    background: #008d4c;
+    background: #15a589;
   }
 }
 .skin-green .main-header .logo {
-  background-color: #008d4c;
-  color: #ffffff;
+  background-color: #15a589;
+  color: #fff;
   border-bottom: 0 solid transparent;
 }
 .skin-green .main-header .logo:hover {
-  background-color: #008749;
+  background-color: #15a185;
 }
 .skin-green .main-header li.user-header {
-  background-color: #00a65a;
+  background-color: #18bc9c;
 }
 .skin-green .content-header {
   background: transparent;
@@ -74,9 +74,9 @@
 }
 .skin-green .sidebar-menu > li:hover > a,
 .skin-green .sidebar-menu > li.active > a {
-  color: #ffffff;
+  color: #fff;
   background: #1e282c;
-  border-left-color: #00a65a;
+  border-left-color: #18bc9c;
 }
 .skin-green .sidebar-menu > li > .treeview-menu {
   margin: 0 1px;
@@ -93,11 +93,12 @@
 }
 .skin-green .treeview-menu > li.active > a,
 .skin-green .treeview-menu > li > a:hover {
-  color: #ffffff;
+  color: #fff;
 }
 .skin-green .sidebar-form {
   border-radius: 3px;
   border: 1px solid #374850;
+  background-color: #374850;
   margin: 10px 10px;
 }
 .skin-green .sidebar-form input[type="text"],
@@ -119,6 +120,13 @@
   background-color: #fff;
   color: #666;
 }
+.skin-green .sidebar-form input[type="text"]:focus + .input-group-btn {
+  background: #fff;
+  border-top-left-radius: 0;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 0;
+}
 .skin-green .sidebar-form input[type="text"]:focus + .input-group-btn .btn {
   border-left-color: #fff;
 }
@@ -129,3 +137,4 @@
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 0;
 }
+/*# sourceMappingURL=skin-green.css.map */

@@ -3,10 +3,10 @@
  * -----------
  */
 .skin-green-light .main-header .navbar {
-  background-color: #00a65a;
+  background-color: #18bc9c;
 }
 .skin-green-light .main-header .navbar .nav > li > a {
-  color: #ffffff;
+  color: #fff;
 }
 .skin-green-light .main-header .navbar .nav > li > a:hover,
 .skin-green-light .main-header .navbar .nav > li > a:active,
@@ -19,7 +19,7 @@
   color: #f6f6f6;
 }
 .skin-green-light .main-header .navbar .sidebar-toggle {
-  color: #ffffff;
+  color: #fff;
 }
 .skin-green-light .main-header .navbar .sidebar-toggle:hover {
   color: #f6f6f6;
@@ -29,7 +29,7 @@
   color: #fff;
 }
 .skin-green-light .main-header .navbar .sidebar-toggle:hover {
-  background-color: #008d4c;
+  background-color: #15a589;
 }
 @media (max-width: 767px) {
   .skin-green-light .main-header .navbar .dropdown-menu li.divider {
@@ -39,19 +39,19 @@
     color: #fff;
   }
   .skin-green-light .main-header .navbar .dropdown-menu li a:hover {
-    background: #008d4c;
+    background: #15a589;
   }
 }
 .skin-green-light .main-header .logo {
-  background-color: #00a65a;
-  color: #ffffff;
+  background-color: #18bc9c;
+  color: #fff;
   border-bottom: 0 solid transparent;
 }
 .skin-green-light .main-header .logo:hover {
-  background-color: #00a157;
+  background-color: #17b798;
 }
 .skin-green-light .main-header li.user-header {
-  background-color: #00a65a;
+  background-color: #18bc9c;
 }
 .skin-green-light .content-header {
   background: transparent;
@@ -67,7 +67,7 @@
 }
 .skin-green-light .user-panel > .info,
 .skin-green-light .user-panel > .info > a {
-  color: #444444;
+  color: #444;
 }
 .skin-green-light .sidebar-menu > li {
   -webkit-transition: border-left-color 0.3s ease;
@@ -84,11 +84,11 @@
 }
 .skin-green-light .sidebar-menu > li:hover > a,
 .skin-green-light .sidebar-menu > li.active > a {
-  color: #000000;
+  color: #000;
   background: #f4f4f5;
 }
 .skin-green-light .sidebar-menu > li.active {
-  border-left-color: #00a65a;
+  border-left-color: #18bc9c;
 }
 .skin-green-light .sidebar-menu > li.active > a {
   font-weight: 600;
@@ -97,17 +97,17 @@
   background: #f4f4f5;
 }
 .skin-green-light .sidebar a {
-  color: #444444;
+  color: #444;
 }
 .skin-green-light .sidebar a:hover {
   text-decoration: none;
 }
 .skin-green-light .treeview-menu > li > a {
-  color: #777777;
+  color: #777;
 }
 .skin-green-light .treeview-menu > li.active > a,
 .skin-green-light .treeview-menu > li > a:hover {
-  color: #000000;
+  color: #000;
 }
 .skin-green-light .treeview-menu > li.active > a {
   font-weight: 600;
@@ -151,3 +151,4 @@
     border-left: 1px solid #d2d6de;
   }
 }
+/*# sourceMappingURL=skin-green-light.css.map */
