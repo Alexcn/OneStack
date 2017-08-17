@@ -14,7 +14,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class DashBoardView(LoginRequiredMixin, View):
     def get(self, request):
-        return render(request, 'dashboard.html')
+        return render(request, 'main/index.html')
         # return render_to_response('account/dashboard.html')
 
 
