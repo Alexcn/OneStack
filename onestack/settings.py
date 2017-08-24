@@ -152,6 +152,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
+AUTH_USER_MODEL = 'account.User'
+
 CONFIG_DEFAULTS = {
     # Toolbar options
     'RESULTS_CACHE_SIZE': 3,
