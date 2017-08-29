@@ -154,6 +154,12 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 AUTH_USER_MODEL = 'account.User'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
 CONFIG_DEFAULTS = {
     # Toolbar options
     'RESULTS_CACHE_SIZE': 3,
