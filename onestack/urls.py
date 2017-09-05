@@ -18,6 +18,8 @@ from django.conf.urls import url, include
 from django.views.static import serve
 from django.conf.urls.static import static
 from apps.account.views import LogoutView, LoginView
+from rest_framework_jwt.views import obtain_jwt_token
+
 
 urlpatterns = [
     url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
@@ -26,6 +28,8 @@ urlpatterns = [
     url(r'wiki/', include('wiki.urls', namespace='wiki')),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
+    url(r'^api-token-auth/', obtain_jwt_token),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
