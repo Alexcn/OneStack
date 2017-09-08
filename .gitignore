@@ -149,3 +149,5 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 config.py
+
+frontend/node_monules
