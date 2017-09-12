@@ -151,4 +151,5 @@ fabric.properties
 config.py
 
 frontend/node_monules
+frontend/node_modules/*
 frontend/dist
