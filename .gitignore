@@ -153,3 +153,4 @@ config.py
 frontend/node_monules
 frontend/node_modules/*
 frontend/dist
+frontend/package-lock.json
