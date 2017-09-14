@@ -7,9 +7,7 @@ from .models import Wiki
 
 
 class WikiListView(LoginRequiredMixin, ListView):
-    model = Wiki
-    template_name = 'wiki/wiki_list.html'
-
+    pass
 
 class WikiAddView(LoginRequiredMixin, View):
     pass
