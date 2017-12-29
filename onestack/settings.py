@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'common',
     'debug_toolbar',
     'task',
-    'api',
+    #'api',
     'rest_framework',
 ]
 
