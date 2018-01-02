@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     #'api',
     'rest_framework',
     'rest_framework.authtoken',
-    # 'rest_auth',
+    'rest_auth',
 ]
 
 MIDDLEWARE = [
@@ -178,3 +178,5 @@ CONFIG_DEFAULTS = {
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
 }
+
+REST_USE_JWT = True
