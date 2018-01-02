@@ -25,4 +25,4 @@ class AuthSource(models.Model):
 class User(AbstractUser):
     class Meta:
         db_table = 'users'
-    auth_source = models.ForeignKey(AuthSource, default=None)
+    auth_source = models.ForeignKey(AuthSource, default=None, null=True)

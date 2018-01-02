@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'task',
     #'api',
     'rest_framework',
+    'rest_framework.authtoken',
+    # 'rest_auth',
 ]
 
 MIDDLEWARE = [
@@ -155,11 +157,14 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 AUTH_USER_MODEL = 'account.User'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-        'rest_framework.authentication.BasicAuthentication',
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    ]
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
 
 CONFIG_DEFAULTS = {
@@ -168,4 +173,8 @@ CONFIG_DEFAULTS = {
     'SHOW_COLLAPSED': True,
     # Panel options
     'SQL_WARNING_THRESHOLD': 100,   # milliseconds
+}
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
 }
