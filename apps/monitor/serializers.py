@@ -3,10 +3,10 @@ from .models import ServerInfoCollection
 
 
 class ServerInfoCollectionSerializer(serializers.Serializer):
-	id = serializers.BigAutoField(read_only=True)
+    id = serializers.IntegerField(read_only=True)
 
-	def create(self, validated_data):
-		pass
+    def create(self, validated_data):
+        pass
 
-	def update(self, instance, validated_data):
-		pass
+    def update(self, instance, validated_data):
+        pass
