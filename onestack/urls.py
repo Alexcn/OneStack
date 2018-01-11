@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'api/0/monitor/', include('monitor'), namespace='monitor'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
