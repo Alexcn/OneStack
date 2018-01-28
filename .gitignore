@@ -170,3 +170,6 @@ frontend/node_monules
 frontend/node_modules/*
 frontend/dist
 frontend/package-lock.json
+
+# redis
+dump.rdb
