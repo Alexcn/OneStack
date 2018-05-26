@@ -173,3 +173,4 @@ frontend/package-lock.json
 
 # redis
 dump.rdb
+.vscode/
