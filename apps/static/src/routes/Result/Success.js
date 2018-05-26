@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Button, Row, Col, Icon, Steps, Card } from 'antd';
-import Result from '../../components/Result';
+import Result from 'components/Result';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
 const { Step } = Steps;
 
 const desc1 = (
-  <div style={{ fontSize: 12, color: 'rgba(0, 0, 0, 0.45)', position: 'relative', left: 42 }}>
+  <div
+    style={{
+      fontSize: 12,
+      color: 'rgba(0, 0, 0, 0.45)',
+      position: 'relative',
+      left: 42,
+    }}
+  >
     <div style={{ margin: '8px 0 4px' }}>
       曲丽丽<Icon style={{ marginLeft: 8 }} type="dingding-o" />
     </div>
@@ -19,13 +26,22 @@ const desc2 = (
     <div style={{ margin: '8px 0 4px' }}>
       周毛毛<Icon type="dingding-o" style={{ color: '#00A0E9', marginLeft: 8 }} />
     </div>
-    <div><a href="">催一下</a></div>
+    <div>
+      <a href="">催一下</a>
+    </div>
   </div>
 );
 
 const extra = (
-  <div>
-    <div style={{ fontSize: 16, color: 'rgba(0, 0, 0, 0.85)', fontWeight: '500', marginBottom: 20 }}>
+  <Fragment>
+    <div
+      style={{
+        fontSize: 16,
+        color: 'rgba(0, 0, 0, 0.85)',
+        fontWeight: '500',
+        marginBottom: 20,
+      }}
+    >
       项目名称
     </div>
     <Row style={{ marginBottom: 16 }}>
@@ -48,15 +64,15 @@ const extra = (
       <Step title={<span style={{ fontSize: 14 }}>财务复核</span>} />
       <Step title={<span style={{ fontSize: 14 }}>完成</span>} />
     </Steps>
-  </div>
+  </Fragment>
 );
 
 const actions = (
-  <div>
+  <Fragment>
     <Button type="primary">返回列表</Button>
     <Button>查看项目</Button>
     <Button>打 印</Button>
-  </div>
+  </Fragment>
 );
 
 export default () => (

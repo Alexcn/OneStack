@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import { connect } from 'dva';
 import { Form, Card, Select, List, Tag, Icon, Avatar, Row, Col, Button } from 'antd';
 
-import StandardFormRow from '../../components/StandardFormRow';
-import TagSelect from '../../components/TagSelect';
+import TagSelect from 'components/TagSelect';
+import StandardFormRow from 'components/StandardFormRow';
 import styles from './Articles.less';
 
 const { Option } = Select;
@@ -13,8 +13,9 @@ const FormItem = Form.Item;
 const pageSize = 5;
 
 @Form.create()
-@connect(state => ({
-  list: state.list,
+@connect(({ list, loading }) => ({
+  list,
+  loading: loading.models.list,
 }))
 export default class SearchList extends Component {
   componentDidMount() {
@@ -26,7 +27,7 @@ export default class SearchList extends Component {
     form.setFieldsValue({
       owner: ['wzj'],
     });
-  }
+  };
 
   fetchMore = () => {
     this.props.dispatch({
@@ -35,10 +36,10 @@ export default class SearchList extends Component {
         count: pageSize,
       },
     });
-  }
+  };
 
   render() {
-    const { form, list: { list, loading } } = this.props;
+    const { form, list: { list }, loading } = this.props;
     const { getFieldDecorator } = form;
 
     const owners = [
@@ -75,8 +76,9 @@ export default class SearchList extends Component {
       <div className={styles.listContent}>
         <div className={styles.description}>{content}</div>
         <div className={styles.extra}>
-          <Avatar src={avatar} size="small" /><a href={href}>{owner}</a> 发布在 <a href={href}>{href}</a>
-          <em>{moment(updatedAt).format('YYYY-MM-DD hh:mm')}</em>
+          <Avatar src={avatar} size="small" />
+          <a href={href}>{owner}</a> 发布在 <a href={href}>{href}</a>
+          <em>{moment(updatedAt).format('YYYY-MM-DD HH:mm')}</em>
         </div>
       </div>
     );
@@ -89,16 +91,23 @@ export default class SearchList extends Component {
       },
     };
 
-    const loadMore = list.length > 0 ? (
-      <div style={{ textAlign: 'center', marginTop: 16 }}>
-        <Button onClick={this.fetchMore} style={{ paddingLeft: 48, paddingRight: 48 }}>
-          {loading ? <span><Icon type="loading" /> 加载中...</span> : '加载更多'}
-        </Button>
-      </div>
-    ) : null;
+    const loadMore =
+      list.length > 0 ? (
+        <div style={{ textAlign: 'center', marginTop: 16 }}>
+          <Button onClick={this.fetchMore} style={{ paddingLeft: 48, paddingRight: 48 }}>
+            {loading ? (
+              <span>
+                <Icon type="loading" /> 加载中...
+              </span>
+            ) : (
+              '加载更多'
+            )}
+          </Button>
+        </div>
+      ) : null;
 
     return (
-      <div>
+      <Fragment>
         <Card bordered={false}>
           <Form layout="inline">
             <StandardFormRow title="所属类目" block style={{ paddingBottom: 11 }}>
@@ -121,10 +130,7 @@ export default class SearchList extends Component {
                 )}
               </FormItem>
             </StandardFormRow>
-            <StandardFormRow
-              title="owner"
-              grid
-            >
+            <StandardFormRow title="owner" grid>
               <Row>
                 <Col lg={16} md={24} sm={24} xs={24}>
                   <FormItem>
@@ -136,29 +142,24 @@ export default class SearchList extends Component {
                         style={{ maxWidth: 286, width: '100%' }}
                         placeholder="选择 owner"
                       >
-                        {
-                          owners.map(owner =>
-                            <Option key={owner.id} value={owner.id}>{owner.name}</Option>
-                          )
-                        }
+                        {owners.map(owner => (
+                          <Option key={owner.id} value={owner.id}>
+                            {owner.name}
+                          </Option>
+                        ))}
                       </Select>
                     )}
-                    <a className={styles.selfTrigger} onClick={this.setOwner}>只看自己的</a>
+                    <a className={styles.selfTrigger} onClick={this.setOwner}>
+                      只看自己的
+                    </a>
                   </FormItem>
                 </Col>
               </Row>
             </StandardFormRow>
-            <StandardFormRow
-              title="其它选项"
-              grid
-              last
-            >
+            <StandardFormRow title="其它选项" grid last>
               <Row gutter={16}>
                 <Col xl={8} lg={10} md={12} sm={24} xs={24}>
-                  <FormItem
-                    {...formItemLayout}
-                    label="活跃用户"
-                  >
+                  <FormItem {...formItemLayout} label="活跃用户">
                     {getFieldDecorator('user', {})(
                       <Select
                         onChange={this.handleFormSubmit}
@@ -171,24 +172,15 @@ export default class SearchList extends Component {
                   </FormItem>
                 </Col>
                 <Col xl={8} lg={10} md={12} sm={24} xs={24}>
-                  <FormItem
-                    {...formItemLayout}
-                    label="好评度"
-                  >
+                  <FormItem {...formItemLayout} label="好评度">
                     {getFieldDecorator('rate', {})(
-                      <FormItem
-                        label="好评度"
+                      <Select
+                        onChange={this.handleFormSubmit}
+                        placeholder="不限"
+                        style={{ maxWidth: 200, width: '100%' }}
                       >
-                        {getFieldDecorator('rate', {})(
-                          <Select
-                            onChange={this.handleFormSubmit}
-                            placeholder="不限"
-                            style={{ maxWidth: 200, width: '100%' }}
-                          >
-                            <Option value="good">优秀</Option>
-                          </Select>
-                        )}
-                      </FormItem>
+                        <Option value="good">优秀</Option>
+                      </Select>
                     )}
                   </FormItem>
                 </Col>
@@ -219,9 +211,11 @@ export default class SearchList extends Component {
                 extra={<div className={styles.listItemExtra} />}
               >
                 <List.Item.Meta
-                  title={(
-                    <a className={styles.listItemMetaTitle} href={item.href}>{item.title}</a>
-                  )}
+                  title={
+                    <a className={styles.listItemMetaTitle} href={item.href}>
+                      {item.title}
+                    </a>
+                  }
                   description={
                     <span>
                       <Tag>Ant Design</Tag>
@@ -235,7 +229,7 @@ export default class SearchList extends Component {
             )}
           />
         </Card>
-      </div>
+      </Fragment>
     );
   }
 }

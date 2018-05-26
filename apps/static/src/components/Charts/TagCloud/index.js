@@ -31,6 +31,7 @@ class TagCloud extends Component {
   }
 
   componentWillUnmount() {
+    this.isUnmount = true;
     window.removeEventListener('resize', this.resize);
   }
 
@@ -38,7 +39,7 @@ class TagCloud extends Component {
     this.renderChart();
   };
 
-  saveRootRef = (node) => {
+  saveRootRef = node => {
     this.root = node;
   };
 
@@ -76,7 +77,7 @@ class TagCloud extends Component {
 
   @Bind()
   @Debounce(500)
-  renderChart = (nextProps) => {
+  renderChart(nextProps) {
     // const colors = ['#1890FF', '#41D9C7', '#2FC25B', '#FACC14', '#9AE65C'];
     const { data, height } = nextProps || this.props;
 
@@ -87,18 +88,14 @@ class TagCloud extends Component {
     const h = height * 4;
     const w = this.root.offsetWidth * 4;
 
-    const imageMask = new Image();
-    imageMask.crossOrigin = '';
-    imageMask.src = imgUrl;
-
-    imageMask.onload = () => {
+    const onload = () => {
       const dv = new DataSet.View().source(data);
       const range = dv.range('value');
       const [min, max] = range;
       dv.transform({
         type: 'tag-cloud',
         fields: ['name', 'value'],
-        imageMask,
+        imageMask: this.imageMask,
         font: 'Verdana',
         size: [w, h], // 宽高设置最好根据 imageMask 做调整
         padding: 5,
@@ -112,13 +109,27 @@ class TagCloud extends Component {
         },
       });
 
+      if (this.isUnmount) {
+        return;
+      }
+
       this.setState({
         dv,
         w,
         h,
       });
     };
-  };
+
+    if (!this.imageMask) {
+      this.imageMask = new Image();
+      this.imageMask.crossOrigin = '';
+      this.imageMask.src = imgUrl;
+
+      this.imageMask.onload = onload;
+    } else {
+      onload();
+    }
+  }
 
   render() {
     const { className, height } = this.props;
@@ -131,7 +142,16 @@ class TagCloud extends Component {
         ref={this.saveRootRef}
       >
         {dv && (
-          <Chart width={w} height={h} data={dv} padding={0}>
+          <Chart
+            width={w}
+            height={h}
+            data={dv}
+            padding={0}
+            scale={{
+              x: { nice: false },
+              y: { nice: false },
+            }}
+          >
             <Coord reflect="y" />
             <Geom type="point" position="x*y" color="text" shape="cloud" />
           </Chart>

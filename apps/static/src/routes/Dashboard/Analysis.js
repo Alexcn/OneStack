@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'dva';
 import {
   Row,
@@ -24,9 +24,9 @@ import {
   Bar,
   Pie,
   TimelineChart,
-} from '../../components/Charts';
-import Trend from '../../components/Trend';
-import NumberInfo from '../../components/NumberInfo';
+} from 'components/Charts';
+import Trend from 'components/Trend';
+import NumberInfo from 'components/NumberInfo';
 import { getTimeDistance } from '../../utils/utils';
 
 import styles from './Analysis.less';
@@ -42,8 +42,13 @@ for (let i = 0; i < 7; i += 1) {
   });
 }
 
-@connect(state => ({
-  chart: state.chart,
+const Yuan = ({ children }) => (
+  <span dangerouslySetInnerHTML={{ __html: yuan(children) }} /> /* eslint-disable-line react/no-danger */
+);
+
+@connect(({ chart, loading }) => ({
+  chart,
+  loading: loading.effects['chart/fetch'],
 }))
 export default class Analysis extends Component {
   state = {
@@ -65,19 +70,19 @@ export default class Analysis extends Component {
     });
   }
 
-  handleChangeSalesType = (e) => {
+  handleChangeSalesType = e => {
     this.setState({
       salesType: e.target.value,
     });
   };
 
-  handleTabChange = (key) => {
+  handleTabChange = key => {
     this.setState({
       currentTabKey: key,
     });
   };
 
-  handleRangePickerChange = (rangePickerValue) => {
+  handleRangePickerChange = rangePickerValue => {
     this.setState({
       rangePickerValue,
     });
@@ -87,7 +92,7 @@ export default class Analysis extends Component {
     });
   };
 
-  selectDate = (type) => {
+  selectDate = type => {
     this.setState({
       rangePickerValue: getTimeDistance(type),
     });
@@ -113,7 +118,7 @@ export default class Analysis extends Component {
 
   render() {
     const { rangePickerValue, salesType, currentTabKey } = this.state;
-    const { chart } = this.props;
+    const { chart, loading } = this.props;
     const {
       visitData,
       visitData2,
@@ -124,7 +129,6 @@ export default class Analysis extends Component {
       salesTypeData,
       salesTypeDataOnline,
       salesTypeDataOffline,
-      loading,
     } = chart;
 
     const salesPieData =
@@ -241,7 +245,7 @@ export default class Analysis extends Component {
     };
 
     return (
-      <div>
+      <Fragment>
         <Row gutter={24}>
           <Col {...topColResponsiveProps}>
             <ChartCard
@@ -252,7 +256,7 @@ export default class Analysis extends Component {
                   <Icon type="info-circle-o" />
                 </Tooltip>
               }
-              total={yuan(126560)}
+              total={() => <Yuan>126560</Yuan>}
               footer={<Field label="日均销售额" value={`￥${numeral(12423).format('0,0')}`} />}
               contentHeight={46}
             >
@@ -330,7 +334,7 @@ export default class Analysis extends Component {
                 <Row>
                   <Col xl={16} lg={12} md={12} sm={24} xs={24}>
                     <div className={styles.salesBar}>
-                      <Bar height={270} title="销售额趋势" data={salesData} />
+                      <Bar height={295} title="销售额趋势" data={salesData} />
                     </div>
                   </Col>
                   <Col xl={8} lg={12} md={12} sm={24} xs={24}>
@@ -362,7 +366,7 @@ export default class Analysis extends Component {
                       <ul className={styles.rankingList}>
                         {rankingListData.map((item, i) => (
                           <li key={item.title}>
-                            <span className={i < 3 && styles.active}>{i + 1}</span>
+                            <span className={i < 3 ? styles.active : ''}>{i + 1}</span>
                             <span>{item.title}</span>
                             <span>{numeral(item.total).format('0,0')}</span>
                           </li>
@@ -451,9 +455,11 @@ export default class Analysis extends Component {
               <Pie
                 hasLegend
                 subTitle="销售额"
-                total={yuan(salesPieData.reduce((pre, now) => now.y + pre, 0))}
+                total={
+                  () => <Yuan>{salesPieData.reduce((pre, now) => now.y + pre, 0)}</Yuan>
+                }
                 data={salesPieData}
-                valueFormat={val => yuan(val)}
+                valueFormat={value => <Yuan>{value}</Yuan>}
                 height={248}
                 lineWidth={4}
               />
@@ -482,7 +488,7 @@ export default class Analysis extends Component {
             ))}
           </Tabs>
         </Card>
-      </div>
+      </Fragment>
     );
   }
 }

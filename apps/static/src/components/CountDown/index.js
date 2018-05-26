@@ -23,11 +23,14 @@ class CountDown extends Component {
     if (this.props.target !== nextProps.target) {
       clearTimeout(this.timer);
       const { lastTime } = this.initTime(nextProps);
-      this.setState({
-        lastTime,
-      }, () => {
-        this.tick();
-      });
+      this.setState(
+        {
+          lastTime,
+        },
+        () => {
+          this.tick();
+        }
+      );
     }
   }
 
@@ -37,7 +40,7 @@ class CountDown extends Component {
 
   timer = 0;
   interval = 1000;
-  initTime = (props) => {
+  initTime = props => {
     let lastTime = 0;
     let targetTime = 0;
     try {
@@ -51,25 +54,26 @@ class CountDown extends Component {
     }
 
     lastTime = targetTime - new Date().getTime();
-
     return {
-      lastTime,
+      lastTime: lastTime < 0 ? 0 : lastTime,
     };
-  }
+  };
   // defaultFormat = time => (
   //  <span>{moment(time).format('hh:mm:ss')}</span>
   // );
-  defaultFormat = (time) => {
+  defaultFormat = time => {
     const hours = 60 * 60 * 1000;
     const minutes = 60 * 1000;
 
-    const h = fixedZero(Math.floor(time / hours));
-    const m = fixedZero(Math.floor((time - (h * hours)) / minutes));
-    const s = fixedZero(Math.floor((time - (h * hours) - (m * minutes)) / 1000));
+    const h = Math.floor(time / hours);
+    const m = Math.floor((time - h * hours) / minutes);
+    const s = Math.floor((time - h * hours - m * minutes) / 1000);
     return (
-      <span>{h}:{m}:{s}</span>
+      <span>
+        {fixedZero(h)}:{fixedZero(m)}:{fixedZero(s)}
+      </span>
     );
-  }
+  };
   tick = () => {
     const { onEnd } = this.props;
     let { lastTime } = this.state;
@@ -77,31 +81,36 @@ class CountDown extends Component {
     this.timer = setTimeout(() => {
       if (lastTime < this.interval) {
         clearTimeout(this.timer);
-        this.setState({
-          lastTime: 0,
-        }, () => {
-          if (onEnd) {
-            onEnd();
+        this.setState(
+          {
+            lastTime: 0,
+          },
+          () => {
+            if (onEnd) {
+              onEnd();
+            }
           }
-        });
+        );
       } else {
         lastTime -= this.interval;
-        this.setState({
-          lastTime,
-        }, () => {
-          this.tick();
-        });
+        this.setState(
+          {
+            lastTime,
+          },
+          () => {
+            this.tick();
+          }
+        );
       }
     }, this.interval);
-  }
+  };
 
   render() {
-    const { format = this.defaultFormat, ...rest } = this.props;
+    const { format = this.defaultFormat, onEnd, ...rest } = this.props;
     const { lastTime } = this.state;
-
     const result = format(lastTime);
 
-    return (<span {...rest}>{result}</span>);
+    return <span {...rest}>{result}</span>;
   }
 }
 
