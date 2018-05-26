@@ -17,7 +17,7 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.views.static import serve
 from django.conf.urls.static import static
-# from apps.account.views import LogoutView, LoginView
+from apps.account.views import LogoutView, LoginView
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 
@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'', include('account.urls', namespace='account')),
     url(r'assets/', include('assets.urls', namespace='assets')),
     url(r'wiki/', include('wiki.urls', namespace='wiki')),
-    # url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^login/$', LoginView.as_view(), name='login'),
     # url(r'^logout/$', LogoutView.as_view(), name='logout'),
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),
