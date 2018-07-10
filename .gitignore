@@ -177,3 +177,4 @@ dump.rdb
 static/vendor
 node_modules
 yarn.lock
+yarn-error.log
