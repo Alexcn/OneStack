@@ -1,14 +1,20 @@
 {
   "dependencies": {
+    "Flot": "https://github.com/flot/flot.git#0.8.3",
     "autosize": "3.0.15",
     "bootstrap": "3.3.7",
     "bootstrap-daterangepicker": "2.1.24",
     "bootstrap-progressbar": "0.9.0",
     "bootstrap-wysiwyg": "1.0.4",
     "chart.js": "2.1.4",
+    "datejs": "https://github.com/abritinthebay/datejs.git#1.0.0-rc3",
     "devbridge-autocomplete": "1.2.24",
     "fastclick": "1.0.6",
+    "flot-orderbars": "https://github.com/emmerich/flot-orderBars.git#1.0.0",
+    "flot-spline": "0.0.1",
+    "flot.curvedlines": "1.1.1",
     "font-awesome": "4.6.3",
+    "gaugeJS": "https://github.com/bernii/gauge.js.git#1.3.6",
     "google-code-prettify": "1.0.4",
     "iCheck": "https://github.com/fronteed/iCheck.git#1.0.2",
     "jquery": "1.11.3",
@@ -19,6 +25,7 @@
     "nprogress": "0.2.0",
     "parsleyjs": "2.3.13",
     "select2": "4.0.3",
+    "skycons": "^1.0.0",
     "starrr": "2.0.1",
     "supersized": "3.2.9",
     "switchery": "https://github.com/abpetkov/switchery.git#0.8.1"
