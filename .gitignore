@@ -176,3 +176,4 @@ dump.rdb
 .vscode/
 static/vendor
 node_modules
+yarn.lock
