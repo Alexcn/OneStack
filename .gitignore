@@ -175,3 +175,4 @@ frontend/package-lock.json
 dump.rdb
 .vscode/
 static/vendor
+node_modules
