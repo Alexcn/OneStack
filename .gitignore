@@ -175,6 +175,7 @@ frontend/package-lock.json
 dump.rdb
 .vscode/
 static/vendor
+static/vendors
 node_modules
 yarn.lock
 yarn-error.log
