@@ -1,6 +1,6 @@
 {
   "dependencies": {
     "jquery": "1.11.3",
-    "supersized": "3.2.1"
+    "supersized": "3.2.8"
   }
 }
