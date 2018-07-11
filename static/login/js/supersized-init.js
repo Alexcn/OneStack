@@ -20,10 +20,21 @@ jQuery(function($){
         // Components
         slide_links        : 'blank',    // Individual links for each slide (Options: false, 'num', 'name', 'blank')
         slides             : [    // Slideshow Images
-                                 {image : '/static/login/img/backgrounds/1.jpg'},
-                                 {image : '/static/login/img/backgrounds/2.jpg'},
-                                 {image : '/static/login/img/backgrounds/3.jpg'},
-                                 {image : '/static/login/img/backgrounds/4.jpg'}
+                                 {image : '/static/login/img/backgrounds/11.jpg'},
+                                 {image : '/static/login/img/backgrounds/22.jpg'},
+                                 {image : '/static/login/img/backgrounds/33.jpg'},
+                                 {image : '/static/login/img/backgrounds/44.jpg'},
+                                 {image : '/static/login/img/backgrounds/77.jpg'},
+                                 {image : '/static/login/img/backgrounds/88.jpeg'},
+                                 {image : '/static/login/img/backgrounds/88.jpg'},
+                                 {image : '/static/login/img/backgrounds/99.jpg'},
+                                 {image : '/static/login/img/backgrounds/111.jpg'},
+                                 {image : '/static/login/img/backgrounds/112.jpg'},
+                                //  {image : '/static/login/img/backgrounds/113.jpg'},
+                                 {image : '/static/login/img/backgrounds/114.jpg'},
+                                 {image : '/static/login/img/backgrounds/115.jpg'},
+                                 {image : '/static/login/img/backgrounds/116.jpg'},
+                                //  {image : '/static/login/img/backgrounds/66.png'},
                              ]
 
     });
