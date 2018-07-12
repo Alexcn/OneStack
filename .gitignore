@@ -6,22 +6,8 @@ __pycache__/
 # C extensions
 *.so
 
-# node
-apps/static/node_modules
-# dependencies
-apps/static/node_modules
-# roadhog-api-doc ignore
-apps/static/src/utils/request-temp.js
-apps/static/_roadhog-api-doc
-
-# production
-apps/static/dist
-
 # misc
 .DS_Store
-apps/static/npm-debug.log*
-apps/static/coverage
-
 # Distribution / packaging
 .Python
 build/
