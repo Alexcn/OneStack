@@ -160,7 +160,7 @@ frontend/package-lock.json
 # redis
 dump.rdb
 .vscode/
-static/vendors
+static/vendors/*
 node_modules
 yarn.lock
 yarn-error.log
