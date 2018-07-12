@@ -27,17 +27,17 @@ source venv/bin/activate
 
 # 安装前端依赖(不要使用npm)
 yarn install
-```
 
+# 创建用户，用于登录
+./manage.py createsuperuser
+```
 #### 运行
 
 ```sh
 ./manage.py runserver
 ```
 
-![image](http://pbrfrhue5.bkt.clouddn.com/login_screen.gif)
-
-![](http://pbrfrhue5.bkt.clouddn.com/login_screen.gif)
+![image](http://pbrfrhue5.bkt.clouddn.com/dashboard.png)
 
 ### 部署到生产环境
 
