@@ -174,7 +174,6 @@ frontend/package-lock.json
 # redis
 dump.rdb
 .vscode/
-static/vendor
 static/vendors
 node_modules
 yarn.lock
