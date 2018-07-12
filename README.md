@@ -31,6 +31,7 @@ yarn install
 # 创建用户，用于登录
 ./manage.py createsuperuser
 ```
+
 #### 运行
 
 ```sh
