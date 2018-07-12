@@ -23,6 +23,10 @@ cd OneStack
 python3 -m venv venv
 source venv/bin/activate
 
+# 执行数据库迁移
+./manage.py makemigrations
+./manage.py migrate
+
 # 安装前端依赖(不要使用npm)
 yarn install
 ```
@@ -32,7 +36,6 @@ yarn install
 ```sh
 ./manage.py runserver
 ```
-
 
 ### 部署到生产环境
 
