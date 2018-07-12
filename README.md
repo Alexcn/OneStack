@@ -11,6 +11,29 @@
 - 使用类视图代替函数视图
 - 使用form来验证表单
 
+### 本地运行开发环境
+
+#### 安装依赖
+
+```sh
+git clone https://github.com/itpubs/OneStack.git
+cd OneStack
+
+# 安装Python依赖
+python3 -m venv venv
+source venv/bin/activate
+
+# 安装前端依赖(不要使用npm)
+yarn install
+```
+
+#### 运行
+
+```sh
+./manage.py runserver
+```
+
+
 ### 部署到生产环境
 
 - 建议部署在安全的内网环境，外网使用建议使用VPN。
