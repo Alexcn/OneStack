@@ -35,6 +35,8 @@ yarn install
 ./manage.py runserver
 ```
 
+![image](http://pbrfrhue5.bkt.clouddn.com/login_screen.gif)
+
 ### 部署到生产环境
 
 - 目前版本不稳定，不建议部署到生产环境；

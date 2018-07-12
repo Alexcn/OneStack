@@ -26,7 +26,9 @@
     <body>
 
         <div class="page-container">
-            <h1><a class="navbar-brand" href="{% url 'login' %}"><img src="/static/login/img/logo.png"></a><span
+            {% comment %} <h1><a class="navbar-brand" href="{% url 'login' %}"><img src="/static/login/img/logo.jpg"></a><span
+                    style="color: MintCream">OneStack</span></h1> {% endcomment %}
+            <h1><a class="navbar-brand" href="{% url 'login' %}"></a><span
                     style="color: MintCream">OneStack</span></h1>
             {% if errors %}
                  {% for error in errors %}
