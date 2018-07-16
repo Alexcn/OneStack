@@ -167,3 +167,4 @@ Pipfile.lock
 
 # static file
 _static/*
+staticfiles/*
