@@ -20,10 +20,10 @@ jQuery(function($){
         // Components
         slide_links        : 'blank',    // Individual links for each slide (Options: false, 'num', 'name', 'blank')
         slides             : [    // Slideshow Images
-                                 {image : '/static/login/img/backgrounds/11.jpg'},
+                                //  {image : '/static/login/img/backgrounds/11.jpg'},
                                  {image : '/static/login/img/backgrounds/22.jpg'},
-                                 {image : '/static/login/img/backgrounds/33.jpg'},
-                                 {image : '/static/login/img/backgrounds/44.jpg'},
+                                //  {image : '/static/login/img/backgrounds/33.jpg'},
+                                //  {image : '/static/login/img/backgrounds/44.jpg'},
                                  {image : '/static/login/img/backgrounds/77.jpeg'},
                                  {image : '/static/login/img/backgrounds/88.jpg'},
                                  {image : '/static/login/img/backgrounds/88.jpg'},
