@@ -202,7 +202,7 @@
                                             </ul>
                                         </div>
                                         <div class="right col-xs-5 text-center">
-                                            <img src="images/user.png" alt="" class="img-circle img-responsive">
+                                            <img src="/static/images/user.png" alt="" class="img-circle img-responsive">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 bottom text-center">
@@ -258,7 +258,7 @@
                                             </ul>
                                         </div>
                                         <div class="right col-xs-5 text-center">
-                                            <img src="images/user.png" alt="" class="img-circle img-responsive">
+                                            <img src="/static/images/user.png" alt="" class="img-circle img-responsive">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 bottom text-center">
@@ -370,7 +370,7 @@
                                             </ul>
                                         </div>
                                         <div class="right col-xs-5 text-center">
-                                            <img src="images/user.png" alt="" class="img-circle img-responsive">
+                                            <img src="/static/images/user.png" alt="" class="img-circle img-responsive">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 bottom text-center">
@@ -426,7 +426,7 @@
                                             </ul>
                                         </div>
                                         <div class="right col-xs-5 text-center">
-                                            <img src="images/user.png" alt="" class="img-circle img-responsive">
+                                            <img src="/static/images/user.png" alt="" class="img-circle img-responsive">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 bottom text-center">
@@ -482,7 +482,7 @@
                                             </ul>
                                         </div>
                                         <div class="right col-xs-5 text-center">
-                                            <img src="images/user.png" alt="" class="img-circle img-responsive">
+                                            <img src="/static/images/user.png" alt="" class="img-circle img-responsive">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 bottom text-center">
@@ -538,7 +538,7 @@
                                             </ul>
                                         </div>
                                         <div class="right col-xs-5 text-center">
-                                            <img src="images/user.png" alt="" class="img-circle img-responsive">
+                                            <img src="/static/images/user.png" alt="" class="img-circle img-responsive">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 bottom text-center">
@@ -588,6 +588,30 @@
 
 {% block javascripts %} 
     {{ block.super}}
+
+      {{ block.super}}
+  <!-- Chart.js -->
+  <script src="/static/vendors/Chart.js/dist/Chart.min.js"></script>
+  <!-- gauge.js -->
+  <script src="/static/vendors/gaugeJS/dist/gauge.min.js"></script>
+  <!-- Skycons -->
+  <script src="/static/vendors/skycons/skycons.js"></script>
+  <!-- Flot -->
+  <script src="/static/vendors/Flot/jquery.flot.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.pie.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.time.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.stack.js"></script>
+  <script src="/static/vendors/Flot/jquery.flot.resize.js"></script>
+  <!-- Flot plugins -->
+  <script src="/static/vendors/flot-orderbars/js/jquery.flot.orderBars.js"></script>
+  <script src="/static/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+  <script src="/static/vendors/flot.curvedlines/curvedLines.js"></script>
+  <!-- DateJS -->
+  <script src="/static/vendors/DateJS/build/date.js"></script>
+  <!-- JQVMap -->
+  <script src="/static/vendors/jqvmap/dist/jquery.vmap.js"></script>
+  <script src="/static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+  <script src="/static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
     <script src="/static/vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="/static/vendors/nprogress/nprogress.js"></script>
@@ -595,4 +619,5 @@
     <script src="/static/vendors/validator/validator.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="/static/build/js/custom.min.js"></script>
+
 {% endblock javascripts %}

@@ -29,6 +29,7 @@
     "skycons": "^1.0.0",
     "starrr": "2.0.1",
     "supersized": "3.2.9",
-    "switchery": "https://github.com/abpetkov/switchery.git#0.8.1"
+    "switchery": "https://github.com/abpetkov/switchery.git#0.8.1",
+    "validator": "https://github.com/yairEO/validator#3.0.0"
   }
 }
