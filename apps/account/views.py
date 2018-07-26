@@ -48,9 +48,15 @@ class LogoutView(LoginRequiredMixin, View):
         return HttpResponseRedirect('/login')
 
 
-class UserListView(LoginRequiredMixin, ListView):
-    template_name = 'account/user_list.html'
+# class UserListView(LoginRequiredMixin, ListView):
+#     template_name = 'page/user_list.html'
 
+
+class UserListView(LoginRequiredMixin, View):
+    
+    def get(self, request):
+        return render(request, 'pages/user_list.html')
+    # template_name = 'page/user_list.html'
 
 class UserAddView(LoginRequiredMixin, CreateView):
     template_name = 'account/user_add.html'
