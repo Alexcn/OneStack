@@ -21,6 +21,7 @@ cd OneStack
 # 安装Python依赖
 python3 -m venv venv
 source venv/bin/activate
+pip install -r requirements.txt
 
 # 执行数据库迁移
 ./manage.py makemigrations
