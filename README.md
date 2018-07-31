@@ -8,7 +8,6 @@
 
 - 使用类视图代替函数视图
 - 使用form来验证表单
-- 
 
 ### 本地运行开发环境
 
@@ -22,7 +21,11 @@ cd OneStack
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
 
+#### 数据迁移和创建用户
+
+```sh
 # 执行数据库迁移
 ./manage.py makemigrations
 ./manage.py migrate
