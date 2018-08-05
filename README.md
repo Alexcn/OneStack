@@ -12,6 +12,9 @@
 git clone https://github.com/itpubs/OneStack.git
 cd OneStack
 
+# 安装前端依赖(不要使用npm)
+yarn install
+
 # 安装Python依赖
 python3 -m venv venv
 source venv/bin/activate
@@ -24,9 +27,6 @@ pip install -r requirements.txt
 # 执行数据库迁移
 ./manage.py makemigrations
 ./manage.py migrate
-
-# 安装前端依赖(不要使用npm)
-yarn install
 
 # 创建用户，用于登录
 ./manage.py createsuperuser
