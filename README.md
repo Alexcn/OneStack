@@ -6,6 +6,14 @@
 
 ### 本地运行开发环境
 
+#### 创建postgres数据库和用户
+
+```sh
+# 在数据库控制台下执行
+create user one;
+create database onestack owner one;
+```
+
 #### 安装依赖
 
 ```sh
