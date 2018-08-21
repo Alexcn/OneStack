@@ -57,4 +57,5 @@ pip install -r requirements.txt
 
 - 使用类视图代替函数视图
 - 使用form来验证表单
+- 不要写面条式的代码
 
