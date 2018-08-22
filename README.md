@@ -6,6 +6,8 @@
 
 ### 本地运行开发环境
 
+需要安装PostgreSQL数据库
+
 #### 创建postgres数据库和用户
 
 ```sh
@@ -57,5 +59,4 @@ pip install -r requirements.txt
 
 - 使用类视图代替函数视图
 - 使用form来验证表单
-- 不要写面条式的代码
 
