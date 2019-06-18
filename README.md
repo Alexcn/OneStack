@@ -47,7 +47,7 @@ pip install -r requirements.txt
 ```sh
 ./manage.py runserver
 ```
-
+#### 效果图待更新
 ![image](http://pbrfrhue5.bkt.clouddn.com/dashboard.png)
 
 ### 部署到生产环境
