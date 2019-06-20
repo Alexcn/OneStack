@@ -1,6 +1,6 @@
 appnope==0.1.0
 decorator==4.1.1
-Django==1.11.14
+Django==1.11.21
 django-debug-toolbar==1.8
 django-filter==1.0.4
 django-model-utils==3.0.0
