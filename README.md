@@ -47,7 +47,8 @@ pip install -r requirements.txt
 ```sh
 ./manage.py runserver
 ```
-#### 效果图待更新
+#### 效果图
+
 ![image](https://raw.githubusercontent.com/Alexcn/OneStack/master/screenshots/dashboard1.png)
 
 ### 部署到生产环境
