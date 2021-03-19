@@ -5,7 +5,7 @@ django-debug-toolbar==1.8
 django-filter==1.0.4
 django-model-utils==3.0.0
 django-rest-auth==0.9.5
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 ipython==6.1.0
 ipython-genutils==0.2.0
