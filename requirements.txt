@@ -1,7 +1,7 @@
 appnope==0.1.0
 decorator==4.1.1
 Django==1.11.29
-django-debug-toolbar==1.8
+django-debug-toolbar==1.11.1
 django-filter==1.0.4
 django-model-utils==3.0.0
 django-rest-auth==0.9.5
