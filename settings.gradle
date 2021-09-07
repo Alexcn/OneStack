@@ -1,3 +1,4 @@
 rootProject.name = 'onestack-project'
 include(':common-lib')
 include(':common-lib-web')
+include(':api-gateway')
