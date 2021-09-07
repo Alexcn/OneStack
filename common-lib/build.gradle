@@ -1,12 +1,12 @@
 plugins {
-	id 'org.springframework.boot'
-	id 'io.spring.dependency-management'
-	id 'java'
+  id 'org.springframework.boot'
+  id 'io.spring.dependency-management'
+  id 'java'
   id "me.champeau.gradle.jmh" version "0.5.2"
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
+  implementation 'org.springframework.boot:spring-boot-starter'
 
 //  implementation libraries.mybatis_plus_boot_starter
   implementation libraries.sentry
@@ -24,14 +24,14 @@ dependencies {
   implementation libraries.guava
 
   compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation libraries.jmh_core
   testImplementation libraries.jmh_generator_annprocess
 }
 
-jar.enabled=true
+jar.enabled = true
 
 test {
-	useJUnitPlatform()
+  useJUnitPlatform()
 }
