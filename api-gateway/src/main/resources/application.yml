@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      routes:
+      - id: account-service
+        uri: http://localhost:8091
