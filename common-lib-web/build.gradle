@@ -1,9 +1,15 @@
 plugins {
+  id 'insight.java-application-conventions'
   id 'org.springframework.boot'
   id 'io.spring.dependency-management'
-  id 'org.asciidoctor.convert'
   id 'java'
 }
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_17
+  targetCompatibility = JavaVersion.VERSION_17
+}
+
 
 ext {
   set('snippetsDir', file("build/generated-snippets"))
@@ -14,30 +20,11 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-aop'
   implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-  implementation libraries.mybatis_plus_boot_starter
-  implementation libraries.jetbrains_annotations
-  implementation libraries.jackson_datatype_jsr310
-//  implementation 'org.postgresql:postgresql'
-//  implementation libraries.gson
-
-  implementation project(':common-lib')
-
   compileOnly 'org.projectlombok:lombok'
   annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
   annotationProcessor 'org.projectlombok:lombok'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
-  asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor'
   testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
 
 jar.enabled = true
-
-test {
-  outputs.dir snippetsDir
-  useJUnitPlatform()
-}
-
-asciidoctor {
-  inputs.dir snippetsDir
-  dependsOn test
-}

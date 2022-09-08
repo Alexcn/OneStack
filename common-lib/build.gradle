@@ -1,33 +1,24 @@
 plugins {
+  id 'insight.java-application-conventions'
   id 'org.springframework.boot'
   id 'io.spring.dependency-management'
   id 'java'
-  id "me.champeau.gradle.jmh" version "0.5.2"
 }
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_17
+  targetCompatibility = JavaVersion.VERSION_17
+}
+
 
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter'
 
-//  implementation libraries.mybatis_plus_boot_starter
-  implementation libraries.sentry
-  implementation libraries.hutool_core
-  implementation libraries.hutool_crypto
-  implementation libraries.easyexcel
-  implementation libraries.commons_io
-  implementation libraries.commons_compress
-  implementation libraries.commons_lang3
-  implementation libraries.jackson_core_databind
-  implementation libraries.jackson_core
-  implementation libraries.xz
-  implementation libraries.bouncycastle_openpgp
-  implementation libraries.jackson_core_databind
-  implementation libraries.guava
 
   compileOnly 'org.projectlombok:lombok'
   annotationProcessor 'org.projectlombok:lombok'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
-  testImplementation libraries.jmh_core
-  testImplementation libraries.jmh_generator_annprocess
+
 }
 
 jar.enabled = true

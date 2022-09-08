@@ -7,13 +7,23 @@ plugins {
 
 group = 'net.geektop'
 version = "${projectVersion}"
-sourceCompatibility = "${javaVersion}"
+
+repositories {
+  maven {
+    url 'https://maven.aliyun.com/repository/central'
+  }
+  maven {
+    url 'https://maven.aliyun.com/repository/spring/'
+  }
+  mavenLocal()
+  mavenCentral()
+  maven { url "https://jitpack.io" }
+  maven { url 'https://repo.spring.io/snapshot' }
+  maven { url 'https://repo.spring.io/milestone' }
+}
 
 allprojects {
   repositories {
-//    maven {
-//      url 'https://maven.aliyun.com/repository/public'
-//    }
     maven {
       url 'https://maven.aliyun.com/repository/central'
     }
@@ -23,380 +33,23 @@ allprojects {
     mavenLocal()
     mavenCentral()
     maven { url "https://jitpack.io" }
-//    maven { url 'https://repo.spring.io/snapshot' }
+    maven { url 'https://repo.spring.io/snapshot' }
     maven { url 'https://repo.spring.io/milestone' }
   }
 }
 
-ext.libraries = [
-  // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter
-  mybatis_plus                             : 'com.baomidou:mybatis-plus-boot-starter:3.4.2',
-  mybatis_plus_boot_starter                : 'com.baomidou:mybatis-plus-boot-starter:3.4.2',
-
-  // https://mvnrepository.com/artifact/com.baomidou/dynamic-datasource-spring-boot-starter
-  dynamic_datasource_spring_boot_starter   : 'com.baomidou:dynamic-datasource-spring-boot-starter:3.2.1',
-
-  // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
-  jaxb_api                                 : 'javax.xml.bind:jaxb-api:2.3.1',
-
-  // https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-core
-  jaxb_core                                : 'com.sun.xml.bind:jaxb-core:3.0.0',
-
-  // https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl
-  jaxb_impl                                : 'com.sun.xml.bind:jaxb-impl:3.0.0',
-
-  // https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt
-  nimbus_jose_jwt                          : 'com.nimbusds:nimbus-jose-jwt:9.4.1',
-
-  // https://mvnrepository.com/artifact/com.github.dozermapper/dozer-spring-boot-starter
-  dozer_spring_boot_starter                : 'com.github.dozermapper:dozer-spring-boot-starter:6.5.2',
-
-  // https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
-  springfox_swagger2                       : 'io.springfox:springfox-swagger2:3.0.0',
-
-  // https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
-  springfox_swagger_ui                     : 'io.springfox:springfox-swagger-ui:3.0.0',
-
-  // https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter
-  springfox_boot_starter                   : 'io.springfox:springfox-boot-starter:3.0.0',
-
-  // https://mvnrepository.com/artifact/org.mybatis/mybatis-typehandlers-jsr310
-  mybatis_typehandlers_jsr310              : 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2',
-
-  // https://mvnrepository.com/artifact/org.springframework.shell/spring-shell-starter
-  spring_shell_starter                     : 'org.springframework.shell:spring-shell-starter:2.0.1.RELEASE',
-
-  // https://mvnrepository.com/artifact/javax/javaee-api
-  javaee_api                               : 'javax:javaee-api:8.0.1',
-
-  // https://mvnrepository.com/artifact/io.sentry/sentry
-  sentry                                   : 'io.sentry:sentry:5.1.2',
-
-  // https://mvnrepository.com/artifact/io.sentry/sentry-spring-boot-starter
-  sentry_spring_boot_start                 : 'io.sentry:sentry-spring-boot-starter:5.1.2',
-
-  // https://mvnrepository.com/artifact/cn.hutool/hutool-all
-  hutool_all                               : 'cn.hutool:hutool-all:5.7.11',
-
-  // https://mvnrepository.com/artifact/cn.hutool/hutool-core
-  hutool_core                              : 'cn.hutool:hutool-core:5.7.11',
-
-  // https://mvnrepository.com/artifact/cn.hutool/hutool-crypto
-  hutool_crypto                            : 'cn.hutool:hutool-crypto:5.7.11',
-
-  // https://mvnrepository.com/artifact/cn.hutool/hutool-system
-  hutool_system                            : 'cn.hutool:hutool-system:5.7.11',
-
-  // https://mvnrepository.com/artifact/com.alibaba/easyexcel
-  easyexcel                                : 'com.alibaba:easyexcel:2.2.8',
-
-  // https://mvnrepository.com/artifact/commons-io/commons-io
-  commons_io                               : 'commons-io:commons-io:2.8.0',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
-  commons_lang3                            : 'org.apache.commons:commons-lang3:3.12.0',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-collections4
-  commons_collections4                     : 'org.apache.commons:commons-collections4:4.4',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-compress
-  commons_compress                         : 'org.apache.commons:commons-compress:1.20',
-
-  // https://mvnrepository.com/artifact/commons-net/commons-net
-  commons_net                              : 'commons-net:commons-net:3.8.0',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-math3
-  commons_math3                            : 'org.apache.commons:commons-math3:3.6.1',
-
-  // https://mvnrepository.com/artifact/commons-codec/commons-codec
-  commons_codec                            : 'commons-codec:commons-codec:1.15',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-text
-  commons_text                             : 'org.apache.commons:commons-text:1.9',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-pool2
-  commons_pool2                            : 'org.apache.commons:commons-pool2:2.9.0',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-vfs2
-  commons_vfs2                             : 'org.apache.commons:commons-vfs2:2.8.0',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-rng-simple
-  commons_rng_simple                       : 'org.apache.commons:commons-rng-simple:1.3',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-rdf-jena
-  commons_rdf_jena                         : 'org.apache.commons:commons-rdf-jena:0.5.0',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-rdf-api
-  commons_rdf_api                          : 'org.apache.commons:commons-rdf-api:0.5.0',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-numbers-core
-  commons_numbers_core                     : 'org.apache.commons:commons-numbers-core:1.0-beta1',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-exec
-  commons_exec                             : 'org.apache.commons:commons-exec:1.3',
-
-  // https://mvnrepository.com/artifact/commons-daemon/commons-daemon
-  commons_daemon                           : 'commons-daemon:commons-daemon:1.2.4',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-csv
-  commons_csv                              : 'org.apache.commons:commons-csv:1.8',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-crypto
-  commons_crypto                           : 'org.apache.commons:commons-crypto:1.1.0',
-
-  // https://mvnrepository.com/artifact/commons-cli/commons-cli
-  commons_cli                              : 'commons-cli:commons-cli:1.4',
-
-  // https://mvnrepository.com/artifact/org.apache.commons/commons-imaging
-  commons_imaging                          : 'org.apache.commons:commons-imaging:1.0-alpha2',
-
-  // https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils
-  commons_beanutils                        : 'commons-beanutils:commons-beanutils:1.9.4',
-
-  // https://mvnrepository.com/artifact/org.apache.tika/tika-core
-  tika_core                                : 'org.apache.tika:tika-core:1.26',
-
-  // https://mvnrepository.com/artifact/org.apache.tika/tika-parsers
-  tika_parsers                             : 'org.apache.tika:tika-parsers:1.26',
-
-  // https://mvnrepository.com/artifact/org.apache.tika/tika-langdetect
-  tika_langdetect                          : 'org.apache.tika:tika-langdetect:1.26',
-
-  // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
-  httpclient                               : 'org.apache.httpcomponents:httpclient:4.5.13',
-
-  // https://mvnrepository.com/artifact/org.jetbrains/annotations
-  jetbrains_annotations                    : 'org.jetbrains:annotations:20.1.0',
-
-  // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
-  okhttp                                   : 'com.squareup.okhttp3:okhttp:4.9.1',
-
-  // https://mvnrepository.com/artifact/org.jsoup/jsoup
-  jsoup                                    : 'org.jsoup:jsoup:1.13.1',
-
-  // https://mvnrepository.com/artifact/com.alibaba/fastjson
-  fastjson                                 : 'com.alibaba:fastjson:1.2.75',
-
-  // https://mvnrepository.com/artifact/com.google.guava/guava
-  guava                                    : 'com.google.guava:guava:30.1.1-jre',
-
-  // https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox
-  pdfbox                                   : 'org.apache.pdfbox:pdfbox:2.0.23',
-
-  // https://mvnrepository.com/artifact/com.itextpdf/itextpdf
-  itextpdf5                                : 'com.itextpdf:itextpdf:5.5.13.2',
-
-  // https://mvnrepository.com/artifact/com.itextpdf/kernel
-  itextpdf7_kernel                         : 'com.itextpdf:kernel:7.1.14',
-
-  // https://mvnrepository.com/artifact/com.itextpdf/itext7-core
-  itextpdf7_core                           : 'com.itextpdf:itext7-core:7.1.14',
-
-  // https://mvnrepository.com/artifact/com.itextpdf/io
-  itextpdf7_io                             : 'com.itextpdf:io:7.1.14',
-
-  // https://mvnrepository.com/artifact/org.openjfx/javafx-base
-//  javafx_base: 'org.openjfx:javafx-base:14.0.1',
-
-  // https://mvnrepository.com/artifact/io.netty/netty-all
-  netty_all                                : 'io.netty:netty-all:4.1.63.Final',
-
-  // https://mvnrepository.com/artifact/com.squareup.okio/okio
-  okio                                     : 'com.squareup.okio:okio:2.10.0',
-
-  // https://mvnrepository.com/artifact/com.github.oshi/oshi-core
-  oshi_core                                : 'com.github.oshi:oshi-core:5.7.0',
-
-  // https://mvnrepository.com/artifact/com.google.zxing/core
-  zxing_core                               : 'com.google.zxing:core:3.4.1',
-
-  // https://mvnrepository.com/artifact/org.greenrobot/eventbus
-  greenrobot_eventbus                      : 'org.greenrobot:eventbus:3.2.0',
-
-  // https://mvnrepository.com/artifact/com.squareup/javapoet
-  squareup_javapoet                        : 'com.squareup:javapoet:1.13.0',
-
-  // https://mvnrepository.com/artifact/org.mockito/mockito-core
-  mockito_core                             : 'org.mockito:mockito-core:3.9.0',
-
-  // https://mvnrepository.com/artifact/com.google.code.gson/gson
-  gson                                     : 'com.google.code.gson:gson:2.8.6',
-
-  // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
-  jackson_core_databind                    : 'com.fasterxml.jackson.core:jackson-databind:2.12.4',
-
-  // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
-  jackson_core                             : 'com.fasterxml.jackson.core:jackson-core:2.12.4',
-
-  // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations
-  jackson_core_annotations                 : 'com.fasterxml.jackson.core:jackson-annotations:2.12.4',
-
-  // https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310
-  jackson_datatype_jsr310                  : 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.4',
-
-  // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml
-  jackson_dataformat_yaml                  : 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.4',
-
-  // https://mvnrepository.com/artifact/tk.mybatis/mapper-spring-boot-starter
-  mapper_spring_boot_starter               : 'tk.mybatis:mapper-spring-boot-starter:2.1.5',
-
-  // https://mvnrepository.com/artifact/net.oschina.j2cache/j2cache-core
-  j2cache_core                             : 'net.oschina.j2cache:j2cache-core:2.8.2-release',
-
-  // https://mvnrepository.com/artifact/net.oschina.j2cache/j2cache-mybatis
-  j2cache_mybatis                          : 'net.oschina.j2cache:j2cache-mybatis:2.8.0-release',
-
-  // https://mvnrepository.com/artifact/net.oschina.j2cache/j2cache-spring-boot2-starter
-  j2cache_spring_boot2_starter             : 'net.oschina.j2cache:j2cache-spring-boot2-starter:2.8.0-release',
-
-  // https://mvnrepository.com/artifact/org.apache.mina/mina-core
-  mina_core                                : 'org.apache.mina:mina-core:2.1.4',
-
-  // https://mvnrepository.com/artifact/org.powermock/powermock-module-junit4
-  powermock_module_junit4                  : 'org.powermock:powermock-module-junit4:2.0.7',
-
-  // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
-  mockito_junit_jupiter                    : 'org.mockito:mockito-junit-jupiter:3.5.0',
-
-  // https://mvnrepository.com/artifact/io.projectreactor/reactor-core
-  reactor_core                             : 'io.projectreactor:reactor-core:3.3.6.RELEASE',
-
-  // https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on
-  bouncycastle                             : 'org.bouncycastle:bcprov-jdk15on:1.67',
-
-  // https://mvnrepository.com/artifact/org.bouncycastle/bcpg-jdk15on
-  bouncycastle_openpgp                     : 'org.bouncycastle:bcpg-jdk15on:1.67',
-
-  // https://mvnrepository.com/artifact/com.lmax/disruptor
-  disruptor                                : 'com.lmax:disruptor:3.4.2',
-
-  // https://mvnrepository.com/artifact/org.springframework.statemachine/spring-statemachine-core
-  spring_statemachine_core                 : 'org.springframework.statemachine:spring-statemachine-core:3.0.0',
-
-  // https://mvnrepository.com/artifact/org.squirrelframework/squirrel-foundation
-  squirrel_squirrel                        : 'org.squirrelframework:squirrel-squirrel:0.3.8',
-
-  // https://mvnrepository.com/artifact/org.apache.poi/poi
-  poi                                      : 'org.apache.poi:poi:4.1.2',
-
-  // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
-  poi_ooxml                                : 'org.apache.poi:poi-ooxml:5.0.0',
-
-  // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-schemas
-  poi_ooxml_schemas                        : 'org.apache.poi:poi-ooxml-schemas:4.1.2',
-
-  // https://mvnrepository.com/artifact/org.apache.poi/poi-scratchpad
-  poi_scratchpad                           : 'org.apache.poi:poi-scratchpad:4.1.2',
-
-  // https://mvnrepository.com/artifact/org.apache.poi/poi-excelant
-  poi_excelant                             : 'org.apache.poi:poi-excelant:4.1.2',
-
-  // https://mvnrepository.com/artifact/org.eclipse.collections/eclipse-collections-api
-  eclipse_collections_api                  : 'org.eclipse.collections:eclipse-collections-api:10.4.0',
-
-  // https://mvnrepository.com/artifact/org.eclipse.collections/eclipse-collections
-  eclipse_collections                      : 'org.eclipse.collections:eclipse-collections:10.4.0',
-
-  // https://mvnrepository.com/artifact/it.unimi.dsi/fastutil
-  fastutil                                 : 'it.unimi.dsi:fastutil:8.5.4',
-
-  // https://mvnrepository.com/artifact/org.bytedeco/javacv
-  bytedeco_javacv                          : 'org.bytedeco:javacv:1.5.5',
-
-  // https://mvnrepository.com/artifact/org.bytedeco/opencv
-  bytedeco_opencv                          : 'org.bytedeco:opencv:4.4.0-1.5.4',
-
-  // https://mvnrepository.com/artifact/org.bytedeco/ffmpeg
-  bytedeco_ffmpeg                          : 'org.bytedeco:ffmpeg:4.3.1-1.5.4',
-
-  // https://mvnrepository.com/artifact/org.bytedeco/javacpp
-  bytedeco_javacpp                         : 'org.bytedeco:javacpp:1.5.4',
-
-  // https://mvnrepository.com/artifact/io.micrometer.prometheus/prometheus-rsocket-spring
-  prometheus_rsocket_spring                : 'io.micrometer.prometheus:prometheus-rsocket-spring:1.3.0',
-
-  // https://mvnrepository.com/artifact/com.aliyun.oss/aliyun-sdk-oss
-  aliyun_sdk_oss                           : 'com.aliyun.oss:aliyun-sdk-oss:3.12.0',
-
-  // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
-  selenium                                 : 'org.seleniumhq.selenium:selenium-java:3.141.59',
-
-  // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver
-  selenium_firefox_driver                  : 'org.seleniumhq.selenium:selenium-firefox-driver:3.141.59',
-
-  // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver
-  selenium_chrome_driver                   : 'org.seleniumhq.selenium:selenium-chrome-driver:3.141.59',
-
-  // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-safari-driver
-  selenium_safari_driver                   : 'org.seleniumhq.selenium:selenium-safari-driver:3.141.59',
-
-  // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-ie-driver
-  selenium_ie_driver                       : 'org.seleniumhq.selenium:selenium-ie-driver:3.141.59',
-
-  // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-edge-driver
-  selenium_edge_driver                     : 'org.seleniumhq.selenium:selenium-edge-driver:3.141.59',
-
-  // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-opera-driver
-  selenium_opera_driver                    : 'org.seleniumhq.selenium:selenium-opera-driver:3.141.59',
-
-  // https://mvnrepository.com/artifact/com.password4j/password4j
-  password4j                               : 'com.password4j:password4j:1.5.3',
-
-  // https://mvnrepository.com/artifact/io.bootique/bootique
-  bootique                                 : 'io.bootique:bootique:1.2',
-
-  // https://mvnrepository.com/artifact/com.shekhargulati/strman
-  strman                                   : 'com.shekhargulati:strman:0.4.0',
-
-  // https://mvnrepository.com/artifact/org.tukaani/xz
-  xz                                       : 'org.tukaani:xz:1.9',
-
-  // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
-  log4j2_core                              : 'org.apache.logging.log4j:log4j-core:2.14.1',
-
-  // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
-  log4j2_api                               : 'org.apache.logging.log4j:log4j-api:2.14.1',
-
-  // https://mvnrepository.com/artifact/org.apache.shiro/shiro-spring-boot-starter
-  shiro_spring_boot_starter                : 'org.apache.shiro:shiro-spring-boot-starter:1.7.1',
-
-  // https://mvnrepository.com/artifact/javax.mail/javax.mail-api
-  javax_mail                               : 'javax.mail:javax.mail-api:1.6.2',
-
-  // https://mvnrepository.com/artifact/org.projectlombok/lombok
-  lombok                                   : 'org.projectlombok:lombok:1.18.20',
-
-  // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
-  slf4j_api                                : 'org.slf4j:slf4j-api:1.7.30',
-
-  // https://mvnrepository.com/artifact/io.vertx/vertx-mail-client
-  vertx_mail_client                        : 'io.vertx:vertx-mail-client:4.0.3',
-
-  // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
-  junit_jupiter_api                        : 'org.junit.jupiter:junit-jupiter-api:5.7.1',
-
-  // https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail
-  jakarta_mail                             : 'com.sun.mail:jakarta.mail:2.0.1',
-
-  // https://mvnrepository.com/artifact/com.jfoenix/jfoenix
-  jfoenix                                  : 'com.jfoenix:jfoenix:9.0.10',
-
-  // https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core
-  jmh_core                                 : 'org.openjdk.jmh:jmh-core:1.29',
-
-  // https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-generator-annprocess
-  jmh_generator_annprocess                 : 'org.openjdk.jmh:jmh-generator-annprocess:1.29',
-
-  // https://mvnrepository.com/artifact/org.springframework.security.oauth.boot/spring-security-oauth2-autoconfigure
-  spring_boot_security_oauth2_autoconfigure: 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.4.4',
-
-  // https://mvnrepository.com/artifact/eu.bitwalker/UserAgentUtils
-  user_agent_utils                         : 'eu.bitwalker:UserAgentUtils:1.21',
-
-  // https://mtedone.github.io/podam/index.html
-  // https://mvnrepository.com/artifact/uk.co.jemos.podam/podam
-  podam                                    : 'uk.co.jemos.podam:podam:7.2.7.RELEASE',
-
-  // https://github.com/libgdx/libgdx.git  Desktop/Android/HTML5/iOS Java game development framework
-
-]
+subprojects {
+  configurations.all {
+    exclude group:'org.springframework.boot', module: 'spring-boot-starter-logging'
+    exclude module: 'logback-classic'
+    exclude module: 'logback-core'
+  }
+}
+
+//ext.libraries = [
+//]
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
